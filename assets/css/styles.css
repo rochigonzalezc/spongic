@@ -51,7 +51,8 @@ body{
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
-img,svg{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
+svg{max-width:100%;display:block}
 button{font:inherit;color:inherit;border:0;background:none;cursor:pointer}
 a{color:inherit;text-decoration:none}
 h1,h2,h3,p,figure,dl,dd{margin:0}
@@ -108,29 +109,26 @@ table{border-collapse:collapse;width:100%}
 .lead strong{color:var(--blue-900);font-weight:700}
 .lead--light strong{color:#fff}
 
-/* ---------- Wordmark ---------- */
-.wordmark{
-  font-family:var(--font-display);
-  font-weight:700;
-  color:var(--orange);
-  letter-spacing:-.012em;
-  text-transform:uppercase;
-  display:inline-block;
-  line-height:.92;
-  -webkit-text-stroke:.085em var(--white);
-  paint-order:stroke fill;
-  /* borde navy por fuera del contorno blanco + sombra caída, como en el packaging */
-  text-shadow:
-    .024em 0 0 var(--blue-900), -.024em 0 0 var(--blue-900),
-    0 .024em 0 var(--blue-900), 0 -.024em 0 var(--blue-900),
-    .017em .017em 0 var(--blue-900), -.017em .017em 0 var(--blue-900),
-    .017em -.017em 0 var(--blue-900), -.017em -.017em 0 var(--blue-900),
-    0 .058em 0 var(--blue-900);
+/* ---------- Logotipo (archivos de marca) ----------
+   El logo tiene contorno azul, así que sobre los fondos azules necesita un
+   halo blanco para despegarse. Es el mismo recurso que usa la marca en sus
+   stickers, así que suma en vez de restar. */
+.logo{
+  display:block;height:auto;
+  filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 0 2px rgba(255,255,255,.75));
 }
-.wordmark--hero{font-size:clamp(4rem,17vw,12.5rem)}
-.wordmark--sm{font-size:1.55rem}
-.wordmark--xs{font-size:1.15rem}
-.section--blue .wordmark,.footer .wordmark{-webkit-text-stroke-color:var(--white)}
+.logo--sm{height:36px;width:auto}
+.logo--xs{height:24px;width:auto}
+.logo--hero{width:min(94%,720px);margin-inline:auto}
+
+/* contorno blanco tipo sticker: sombras encadenadas sin desenfoque, para que
+   el borde quede nítido en lugar de un resplandor difuso */
+.sticker{
+  filter:
+    drop-shadow(1.5px 0 0 #fff) drop-shadow(-1.5px 0 0 #fff)
+    drop-shadow(0 1.5px 0 #fff) drop-shadow(0 -1.5px 0 #fff)
+    drop-shadow(0 10px 20px rgba(8,24,63,.4));
+}
 
 /* ---------- Botones ---------- */
 .btn{
@@ -244,24 +242,23 @@ table{border-collapse:collapse;width:100%}
 
 .hero__eyebrow,.hero__title,.hero__lead,.hero__cta{position:relative;z-index:2}
 
-.hero__title{display:flex;flex-direction:column;align-items:center;gap:.4rem;margin-bottom:1.7rem}
-.hero__sub{
-  font-family:var(--font-display);font-weight:600;
-  font-size:clamp(1rem,2.9vw,2.05rem);
-  letter-spacing:.13em;text-transform:uppercase;color:#fff;
-}
+.hero__title{display:flex;flex-direction:column;align-items:center;margin:0 0 1.9rem}
 .hero__lead{
   font-size:clamp(1.02rem,1.5vw,1.28rem);
   line-height:1.6;color:rgba(255,255,255,.9);
-  max-width:52ch;margin:0 auto 2.4rem;
+  max-width:47ch;margin:0 auto 2.4rem;
 }
 .hero__lead strong{color:var(--yellow);font-weight:700}
 .hero__cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
 
 .hero__mascot{
-  position:absolute;right:-4%;bottom:-17%;width:min(23vw,290px);
-  z-index:1;opacity:.95;pointer-events:none;
+  position:absolute;right:0;bottom:0;width:min(20vw,262px);
+  z-index:1;pointer-events:none;
   animation:float 6s ease-in-out infinite;
+}
+/* el personaje ya trae su propio contorno, así que sólo necesita despegue */
+.mascot{
+  filter:drop-shadow(0 0 2px rgba(255,255,255,.9)) drop-shadow(0 12px 20px rgba(8,24,63,.35));
 }
 @keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-22px) rotate(2deg)}}
 
@@ -282,19 +279,16 @@ table{border-collapse:collapse;width:100%}
 /* sello */
 .stamp{
   position:absolute;top:calc(var(--nav-h) + 1.5rem);right:clamp(1rem,5vw,4rem);
-  width:clamp(88px,9vw,124px);aspect-ratio:1;
-  display:grid;place-items:center;z-index:3;
-  animation:spinSlow 14s linear infinite;
+  width:clamp(94px,9.5vw,134px);z-index:3;
+  filter:drop-shadow(0 0 2px #fff) drop-shadow(0 8px 16px rgba(8,24,63,.4));
+  animation:latido 3.4s ease-in-out infinite;
 }
-.stamp svg{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 6px 14px rgba(8,24,63,.35))}
-.stamp span{
-  position:relative;font-family:var(--font-display);font-weight:700;
-  font-size:clamp(.68rem,.95vw,.86rem);line-height:1.12;
-  color:#fff;text-align:center;text-transform:uppercase;letter-spacing:.03em;
-  animation:spinSlowRev 14s linear infinite;
+.stamp img{width:100%;height:auto}
+/* el texto ya viene en el sello, así que late en lugar de girar */
+@keyframes latido{
+  0%,100%{transform:rotate(-8deg) scale(1)}
+  50%    {transform:rotate(-8deg) scale(1.07)}
 }
-@keyframes spinSlow{to{transform:rotate(360deg)}}
-@keyframes spinSlowRev{to{transform:rotate(-360deg)}}
 
 /* ---------- Marquee ---------- */
 .marquee{
@@ -486,7 +480,7 @@ input[type=range]::-moz-range-thumb{
   background-size:14px 14px,21px 21px;
   background-position:0 0,7px 10px;
 }
-.packshot__logo{position:relative;font-size:clamp(2.1rem,7vw,2.9rem)}
+.packshot__logo{position:relative;width:min(62%,215px)}
 .packshot__tagline{
   position:relative;display:block;
   font-family:var(--font-display);font-weight:600;

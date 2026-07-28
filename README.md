@@ -115,18 +115,30 @@ directo en `index.html`, así que se editan ahí.
 
 ### Imágenes
 
-Todo lo visual está **recreado en SVG y CSS**, no son los archivos originales de
-la marca. Se ve nítido en cualquier pantalla y no depende de imágenes externas,
-pero conviene reemplazarlo por el material real en cuanto lo tengas.
+El logotipo, el personaje y el sello son los **archivos originales de la marca**.
 
-| Qué | Dónde está | Cómo reemplazarlo |
+| Archivo | Qué es | Dónde aparece |
 |---|---|---|
-| **Mascota** | `assets/img/mascota.svg` | Pisá el archivo con el SVG real (mismo nombre) y listo. Si tenés PNG, guardalo como `mascota.png` y cambiá el `src` en el hero de `index.html`. |
-| **Logotipo** | Texto con la clase `.wordmark` | Es Fredoka con contorno blanco y borde azul por CSS. Para usar el logo real, reemplazá `<span class="wordmark">Spongic</span>` por `<img src="assets/img/logo.svg" alt="Spongic">`. Aparece en el nav, el hero, el packshot y el footer. |
-| **Envase** | Componente `.packshot` en `index.html` | Está dibujado con CSS. Si tenés una foto del producto, reemplazá todo el bloque `<figure class="packshot">` por `<img src="assets/img/pack.jpg" alt="Pack de Spongic">`. |
+| `logo.png` | Logotipo solo | Nav, tabla comparativa, envase, footer |
+| `logo-lockup.png` | Logotipo + "Esponja Inteligente" | Hero |
+| `mascota.png` | El personaje | Hero y envase |
+| `sello.png` | "Apretá y probá" | Hero |
+| `favicon-32.png` / `favicon-180.png` | Ícono de pestaña y de iOS | Recortados del personaje |
 
-Una foto real del producto sobre fondo claro es la mejor inversión para esta
-página: vende más que cualquier ilustración.
+Los archivos tal como se subieron quedaron en `assets/img/originales/`, en
+resolución completa. Los que usa la página están recortados al contenido y
+reducidos a tamaño de uso — si necesitás regenerarlos, salen de ahí.
+
+**Sobre el halo blanco:** el logotipo tiene contorno azul, así que sobre los
+fondos azules del sitio necesita despegarse. La clase `.sticker` le agrega un
+contorno blanco nítido, el mismo recurso que usa la marca en sus stickers. Si
+alguna vez ponés el logo sobre fondo claro, sacale esa clase.
+
+**Lo único que sigue siendo una recreación es el envase**: el componente
+`.packshot` está dibujado con CSS. Cuando tengas una foto del producto sobre
+fondo claro, reemplazá todo el bloque `<figure class="packshot">` de
+`index.html` por `<img src="assets/img/pack.jpg" alt="Pack de Spongic">`. Una
+foto real es la mejor inversión que le queda a esta página.
 
 ---
 
