@@ -115,18 +115,18 @@ directo en `index.html`, así que se editan ahí.
 
 ### Imágenes
 
-El logotipo y la mascota están **recreados en SVG y CSS**, no son los archivos
-originales. Se ven nítidos en cualquier pantalla y no dependen de imágenes
-externas, pero si querés usar los originales:
+Todo lo visual está **recreado en SVG y CSS**, no son los archivos originales de
+la marca. Se ve nítido en cualquier pantalla y no depende de imágenes externas,
+pero conviene reemplazarlo por el material real en cuanto lo tengas.
 
-- **Logotipo**: es texto con la clase `.wordmark`. La tipografía es Fredoka
-  (Google Fonts) con contorno blanco y sombra azul aplicados por CSS. Para usar
-  el logo real, reemplazá el `<span class="wordmark">` por un `<img>`.
-- **Mascota**: el SVG está inline en el hero de `index.html`, buscá
-  `class="mascot"`.
-- **Foto del producto**: la página todavía no muestra una. Vale la pena sumar
-  fotos reales del packaging en la sección de packs — venden más que cualquier
-  ilustración.
+| Qué | Dónde está | Cómo reemplazarlo |
+|---|---|---|
+| **Mascota** | `assets/img/mascota.svg` | Pisá el archivo con el SVG real (mismo nombre) y listo. Si tenés PNG, guardalo como `mascota.png` y cambiá el `src` en el hero de `index.html`. |
+| **Logotipo** | Texto con la clase `.wordmark` | Es Fredoka con contorno blanco y borde azul por CSS. Para usar el logo real, reemplazá `<span class="wordmark">Spongic</span>` por `<img src="assets/img/logo.svg" alt="Spongic">`. Aparece en el nav, el hero, el packshot y el footer. |
+| **Envase** | Componente `.packshot` en `index.html` | Está dibujado con CSS. Si tenés una foto del producto, reemplazá todo el bloque `<figure class="packshot">` por `<img src="assets/img/pack.jpg" alt="Pack de Spongic">`. |
+
+Una foto real del producto sobre fondo claro es la mejor inversión para esta
+página: vende más que cualquier ilustración.
 
 ---
 

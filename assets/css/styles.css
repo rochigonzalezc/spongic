@@ -119,10 +119,13 @@ table{border-collapse:collapse;width:100%}
   line-height:.92;
   -webkit-text-stroke:.085em var(--white);
   paint-order:stroke fill;
+  /* borde navy por fuera del contorno blanco + sombra caída, como en el packaging */
   text-shadow:
-    0 .052em 0 var(--blue-900),
-    .014em .066em 0 var(--blue-900),
-   -.014em .066em 0 var(--blue-900);
+    .024em 0 0 var(--blue-900), -.024em 0 0 var(--blue-900),
+    0 .024em 0 var(--blue-900), 0 -.024em 0 var(--blue-900),
+    .017em .017em 0 var(--blue-900), -.017em .017em 0 var(--blue-900),
+    .017em -.017em 0 var(--blue-900), -.017em -.017em 0 var(--blue-900),
+    0 .058em 0 var(--blue-900);
 }
 .wordmark--hero{font-size:clamp(4rem,17vw,12.5rem)}
 .wordmark--sm{font-size:1.55rem}
@@ -450,6 +453,75 @@ input[type=range]::-moz-range-thumb{
 .tick{color:#0F9D58}
 .tick::before{content:'✓';font-size:1.1em}
 .cross::before{content:'✕';font-size:1em;opacity:.7}
+
+/* ---------- Packshot (ilustración del envase) ---------- */
+.packshot{margin:0 0 clamp(2.5rem,5vw,4rem);display:grid;justify-items:center;gap:1rem}
+.packshot__bag{
+  position:relative;width:min(100%,420px);
+  border:3px solid var(--blue-900);border-radius:18px;
+  background:var(--blue-700);
+  box-shadow:0 16px 0 -4px rgba(14,42,107,.25),var(--shadow);
+  transform:rotate(-1.5deg);
+  transition:transform .4s var(--ease);
+}
+.packshot__bag:hover{transform:rotate(0deg) translateY(-6px)}
+/* extremos sellados del envase */
+.packshot__crimp{
+  display:block;height:16px;background:var(--blue-800);
+  background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.22) 0 3px,transparent 3px 8px);
+}
+.packshot__crimp:first-child{border-radius:14px 14px 0 0}
+.packshot__crimp:last-of-type{border-radius:0 0 14px 14px}
+
+.packshot__yellow{
+  position:relative;padding:1.5rem 1.4rem 2.4rem;
+  background:linear-gradient(165deg,#FFF06B,#F5C400);
+  overflow:hidden;
+}
+.packshot__pores{
+  position:absolute;inset:0;opacity:.4;
+  background-image:
+    radial-gradient(circle,rgba(160,120,0,.55) 1.5px,transparent 1.7px),
+    radial-gradient(circle,rgba(160,120,0,.4) 1.1px,transparent 1.3px);
+  background-size:14px 14px,21px 21px;
+  background-position:0 0,7px 10px;
+}
+.packshot__logo{position:relative;font-size:clamp(2.1rem,7vw,2.9rem)}
+.packshot__tagline{
+  position:relative;display:block;
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(.82rem,2.4vw,1.05rem);letter-spacing:.09em;text-transform:uppercase;
+  color:var(--blue-900);margin-top:.15rem;
+}
+.packshot__mascot{
+  position:absolute;right:.7rem;bottom:1.6rem;width:29%;max-width:110px;
+  filter:drop-shadow(0 3px 6px rgba(14,42,107,.3));
+}
+.packshot__foam{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:34px}
+
+.packshot__claims{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;
+  padding:.9rem .8rem;background:var(--blue-700);
+}
+.packshot__claims li{
+  border:1.5px solid rgba(255,255,255,.55);border-radius:7px;
+  padding:.45rem .35rem;text-align:center;
+  font-size:.62rem;line-height:1.2;letter-spacing:.03em;
+  text-transform:uppercase;color:#fff;
+}
+.packshot__badge{
+  position:absolute;top:-14px;right:-14px;
+  width:74px;height:74px;display:grid;place-items:center;
+  background:var(--orange);color:#fff;
+  border:3px solid var(--blue-900);border-radius:50%;
+  font-family:var(--font-display);font-weight:700;font-size:.72rem;line-height:1.1;
+  text-align:center;text-transform:uppercase;
+  transform:rotate(11deg);
+}
+.packshot figcaption{
+  font-family:var(--font-display);font-size:.85rem;letter-spacing:.09em;
+  text-transform:uppercase;color:#8290ad;
+}
 
 /* ---------- Packs ---------- */
 .packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:1.6rem;align-items:stretch}
