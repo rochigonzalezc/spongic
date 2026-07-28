@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spongic — Esponja Inteligente</title>
+<meta name="description" content="Spongic es la esponja inteligente: moldeable, más duradera y termosensible. Con agua caliente se vuelve ultrasuave; con fría, firme para lo difícil. Hecha en Argentina.">
+<meta name="theme-color" content="#1F45A8">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Spongic — Esponja Inteligente">
+<meta property="og:description" content="Moldeable, más duradera y termosensible. La esponja que cambia con la temperatura del agua.">
+<meta property="og:locale" content="es_AR">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#top" class="nav__logo" aria-label="Spongic — inicio">
+      <span class="wordmark wordmark--sm">Spongic</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Principal">
+      <a href="#producto">Producto</a>
+      <a href="#tecnologia">Termosensible</a>
+      <a href="#packs">Comprar</a>
+      <a href="#historia">Historia</a>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn btn--ghost nav__ig" data-cfg-href="instagram" target="_blank" rel="noopener">Instagram</a>
+      <button class="cart-btn" id="cartBtn" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20">
+          <path d="M3 4h2.2l2.3 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.55L21 8H6.4"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="10" cy="20" r="1.6" fill="currentColor"/>
+          <circle cx="17.5" cy="20" r="1.6" fill="currentColor"/>
+        </svg>
+        <span class="cart-btn__label">Carrito</span>
+        <span class="cart-btn__count" id="cartCount" data-empty="true">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<span id="top"></span>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="hero__bubbles" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <p class="hero__eyebrow reveal">
+      <span class="dot"></span> Hecha en Argentina · Desde 2024
+    </p>
+
+    <h1 class="hero__title">
+      <span class="wordmark wordmark--hero reveal" style="--d:.05s">Spongic</span>
+      <span class="hero__sub reveal" style="--d:.15s">Esponja Inteligente</span>
+    </h1>
+
+    <p class="hero__lead reveal" style="--d:.25s">
+      La esponja que <strong>cambia con la temperatura</strong>. Con agua caliente se vuelve
+      ultrasuave; con fría, firme para lo difícil. Moldeable, más duradera y — sí — divertida.
+    </p>
+
+    <div class="hero__cta reveal" style="--d:.35s">
+      <a href="#packs" class="btn btn--primary btn--lg">Comprar ahora</a>
+      <a href="#tecnologia" class="btn btn--ghost-light btn--lg">Ver cómo funciona</a>
+    </div>
+
+    <div class="hero__mascot" aria-hidden="true">
+      <!-- Mascota burbuja (recreada en SVG) -->
+      <svg viewBox="0 0 260 300" class="mascot" role="img">
+        <defs>
+          <radialGradient id="bubbleFill" cx="38%" cy="32%" r="72%">
+            <stop offset="0%" stop-color="#A9DDF5"/>
+            <stop offset="55%" stop-color="#6FC0E8"/>
+            <stop offset="100%" stop-color="#3E9BCC"/>
+          </radialGradient>
+        </defs>
+        <!-- piernas -->
+        <path d="M104 214 L98 258" stroke="#0E2A6B" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <path d="M156 214 L162 258" stroke="#0E2A6B" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <!-- zapatillas -->
+        <rect x="66" y="254" width="52" height="24" rx="11" fill="#fff" stroke="#0E2A6B" stroke-width="5"/>
+        <rect x="142" y="254" width="52" height="24" rx="11" fill="#fff" stroke="#0E2A6B" stroke-width="5"/>
+        <path d="M70 270h44M146 270h44" stroke="#0E2A6B" stroke-width="3.5" stroke-linecap="round" opacity=".55"/>
+        <!-- cuerpo -->
+        <circle cx="130" cy="126" r="92" fill="url(#bubbleFill)" stroke="#0E2A6B" stroke-width="7"/>
+        <!-- brillos -->
+        <ellipse cx="95" cy="84" rx="21" ry="15" fill="#fff" opacity=".72" transform="rotate(-28 95 84)"/>
+        <circle cx="132" cy="66" r="7" fill="#fff" opacity=".55"/>
+        <!-- ojos -->
+        <ellipse cx="108" cy="118" rx="15" ry="18" fill="#fff" stroke="#0E2A6B" stroke-width="5"/>
+        <ellipse cx="154" cy="118" rx="15" ry="18" fill="#fff" stroke="#0E2A6B" stroke-width="5"/>
+        <circle class="mascot__pupil" cx="110" cy="122" r="7" fill="#0E2A6B"/>
+        <circle class="mascot__pupil" cx="156" cy="122" r="7" fill="#0E2A6B"/>
+        <!-- sonrisa -->
+        <path d="M104 152 q26 30 54 0 q-27 12 -54 0z" fill="#0E2A6B"/>
+        <path d="M118 161 q12 12 24 0 q-12 9 -24 0z" fill="#F0526B"/>
+        <!-- brazos -->
+        <path d="M46 132 q-16 -22 -6 -44" stroke="#0E2A6B" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <circle cx="38" cy="82" r="14" fill="#fff" stroke="#0E2A6B" stroke-width="5"/>
+        <path d="M214 132 q16 -14 14 -34" stroke="#0E2A6B" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <circle cx="228" cy="94" r="14" fill="#fff" stroke="#0E2A6B" stroke-width="5"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- sello apretá y probá -->
+  <div class="stamp" aria-hidden="true">
+    <svg viewBox="0 0 120 120"><path id="starburst" d="M60 2 66 18 80 8 81 25 97 20 92 36 109 36 99 49 114 56 99 63 109 76 92 76 97 92 81 87 80 104 66 94 60 110 54 94 40 104 39 87 23 92 28 76 11 76 21 63 6 56 21 49 11 36 28 36 23 20 39 25 40 8 54 18z" fill="#F5821F"/></svg>
+    <span>Apretá<br>y probá</span>
+  </div>
+</section>
+
+<!-- ============================ MARQUEE ============================ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Moldeable</span><span class="marquee__sep">✦</span>
+    <span>Más duradera</span><span class="marquee__sep">✦</span>
+    <span>Termosensible</span><span class="marquee__sep">✦</span>
+    <span>Ultrasuave</span><span class="marquee__sep">✦</span>
+    <span>Multiuso</span><span class="marquee__sep">✦</span>
+    <span>Moldeable</span><span class="marquee__sep">✦</span>
+    <span>Más duradera</span><span class="marquee__sep">✦</span>
+    <span>Termosensible</span><span class="marquee__sep">✦</span>
+    <span>Ultrasuave</span><span class="marquee__sep">✦</span>
+    <span>Multiuso</span><span class="marquee__sep">✦</span>
+  </div>
+</div>
+
+<!-- ============================ PRODUCTO / 3 RAZONES ============================ -->
+<section class="section section--cream" id="producto">
+  <div class="wrap">
+    <header class="section__head">
+      <p class="kicker reveal">Top 3 razones</p>
+      <h2 class="h2 reveal" style="--d:.08s">
+        No es una esponja más.<br><em>Es la esponja inteligente.</em>
+      </h2>
+    </header>
+
+    <div class="cards">
+      <article class="card reveal" style="--d:.05s">
+        <div class="card__icon">
+          <svg viewBox="14 26 72 56" aria-hidden="true">
+            <path class="squish" d="M22 34 q28 -14 56 0 q6 20 0 34 q-28 12 -56 0 q-6 -18 0 -34z"
+                  fill="#FFE24D" stroke="#0E2A6B" stroke-width="5" stroke-linejoin="round"/>
+            <circle cx="40" cy="52" r="3.2" fill="#0E2A6B"/><circle cx="60" cy="52" r="3.2" fill="#0E2A6B"/>
+            <path d="M42 63 q8 8 16 0" stroke="#0E2A6B" stroke-width="4" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Moldeable</h3>
+        <p>Se adapta a la forma de lo que estés lavando. Entra en el fondo del vaso, en la esquina de la olla y en el rincón que ninguna otra alcanza.</p>
+      </article>
+
+      <article class="card reveal" style="--d:.15s">
+        <div class="card__icon">
+          <svg viewBox="21 13 68 64" aria-hidden="true">
+            <path d="M28 30h44v42H28z" fill="#FFE24D" stroke="#0E2A6B" stroke-width="5" stroke-linejoin="round"/>
+            <path d="M28 30 38 20h44l-10 10M72 30l10-10v42l-10 10" fill="#F5C400" stroke="#0E2A6B" stroke-width="5" stroke-linejoin="round"/>
+            <circle cx="42" cy="46" r="3.2" fill="#0E2A6B"/><circle cx="58" cy="46" r="3.2" fill="#0E2A6B"/>
+            <path d="M43 57 q7 7 14 0" stroke="#0E2A6B" stroke-width="4" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Más duradera</h3>
+        <p>Aguanta lavado tras lavado sin desarmarse ni ponerse fea. Una Spongic rinde lo que varias esponjas comunes.</p>
+      </article>
+
+      <article class="card reveal" style="--d:.25s">
+        <div class="card__icon">
+          <svg viewBox="20 20 74 58" aria-hidden="true">
+            <path d="M26 28 q24 -8 44 4 q6 22 0 40 q-24 10 -44 -2 q-6 -22 0 -42z"
+                  fill="#FFE24D" stroke="#0E2A6B" stroke-width="5" stroke-linejoin="round"/>
+            <circle cx="40" cy="48" r="3.2" fill="#0E2A6B"/><circle cx="56" cy="48" r="3.2" fill="#0E2A6B"/>
+            <path d="M41 59 q7 7 14 0" stroke="#0E2A6B" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <rect x="78" y="26" width="9" height="34" rx="4.5" fill="#fff" stroke="#0E2A6B" stroke-width="4"/>
+            <circle cx="82.5" cy="64" r="8" fill="#F0526B" stroke="#0E2A6B" stroke-width="4"/>
+            <rect x="80.5" y="38" width="4" height="22" rx="2" fill="#F0526B"/>
+          </svg>
+        </div>
+        <h3>Termosensible</h3>
+        <p>Reacciona a la temperatura del agua. Caliente para una limpieza ultrasuave, fría cuando necesitás firmeza. Vos elegís.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ TECNOLOGÍA / DEMO ============================ -->
+<section class="section section--blue" id="tecnologia">
+  <div class="wrap tech">
+    <div class="tech__copy">
+      <p class="kicker kicker--light reveal">Cómo funciona</p>
+      <h2 class="h2 h2--light reveal" style="--d:.08s">Movés la temperatura,<br>cambia la esponja.</h2>
+      <p class="lead lead--light reveal" style="--d:.16s">
+        La espuma de Spongic responde al calor del agua. Es el mismo producto: lo que cambia
+        es cómo se comporta en tu mano. Probalo acá abajo.
+      </p>
+
+      <ul class="tech__list reveal" style="--d:.24s">
+        <li><strong>Agua fría</strong> — firme y con más agarre. Para lo pegado y lo difícil.</li>
+        <li><strong>Agua tibia</strong> — el punto medio para el día a día.</li>
+        <li><strong>Agua caliente</strong> — ultrasuave. Para copas, antiadherentes y superficies delicadas.</li>
+      </ul>
+    </div>
+
+    <div class="tech__demo reveal" style="--d:.2s">
+      <div class="demo" id="demo">
+        <div class="demo__stage">
+          <div class="demo__steam" aria-hidden="true"><i></i><i></i><i></i></div>
+          <button class="sponge" id="sponge" aria-label="Apretá la esponja">
+            <span class="sponge__body">
+              <span class="sponge__pores" aria-hidden="true"></span>
+            </span>
+          </button>
+          <p class="demo__hint">Tocá la esponja para apretarla</p>
+        </div>
+
+        <div class="demo__control">
+          <label for="tempRange" class="demo__label">
+            Temperatura del agua
+            <output id="tempOut">20°</output>
+          </label>
+          <input type="range" id="tempRange" min="5" max="65" value="20" step="1"
+                 aria-describedby="tempState">
+          <div class="demo__scale" aria-hidden="true"><span>Fría</span><span>Tibia</span><span>Caliente</span></div>
+          <p class="demo__state" id="tempState"><strong>Firme</strong> — máximo agarre</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ COMPARATIVA ============================ -->
+<section class="section section--cream">
+  <div class="wrap">
+    <header class="section__head section__head--center">
+      <p class="kicker reveal">La diferencia</p>
+      <h2 class="h2 reveal" style="--d:.08s">Spongic vs. la esponja de siempre</h2>
+    </header>
+
+    <div class="compare reveal" style="--d:.12s">
+      <table class="compare__table">
+        <caption class="sr-only">Comparación entre Spongic y una esponja común</caption>
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col" class="is-us"><span class="wordmark wordmark--xs">Spongic</span></th>
+            <th scope="col">Esponja común</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Se adapta a cada superficie</th><td class="is-us"><span class="tick">Sí</span></td><td><span class="cross">No</span></td></tr>
+          <tr><th scope="row">Cambia según la temperatura</th><td class="is-us"><span class="tick">Sí</span></td><td><span class="cross">No</span></td></tr>
+          <tr><th scope="row">Resiste el uso diario</th><td class="is-us"><span class="tick">Muy alta</span></td><td><span class="cross">Se desarma</span></td></tr>
+          <tr><th scope="row">Sirve en cocina y baño</th><td class="is-us"><span class="tick">Multiuso</span></td><td><span class="cross">Limitada</span></td></tr>
+          <tr><th scope="row">Vida útil</th><td class="is-us"><span class="tick">Larga</span></td><td><span class="cross">Corta</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PACKS ============================ -->
+<section class="section section--packs" id="packs">
+  <div class="wrap">
+    <header class="section__head section__head--center">
+      <p class="kicker reveal">Elegí tu pack</p>
+      <h2 class="h2 reveal" style="--d:.08s">Llevá Spongic a tu cocina</h2>
+      <p class="lead lead--center reveal" style="--d:.16s" id="envioNota"></p>
+    </header>
+
+    <div class="packs" id="packsGrid" role="list"></div>
+
+    <p class="packs__foot reveal">
+      Armá tu pedido y lo terminamos por WhatsApp. Sin cuenta, sin vueltas.
+    </p>
+  </div>
+</section>
+
+<!-- ============================ HISTORIA ============================ -->
+<section class="section section--blue" id="historia">
+  <div class="wrap historia">
+    <div class="historia__copy">
+      <p class="kicker kicker--light reveal">Nuestra historia</p>
+      <h2 class="h2 h2--light reveal" style="--d:.08s">Dos personas cansadas<br>de las esponjas aburridas.</h2>
+      <p class="lead lead--light reveal" style="--d:.16s">
+        Spongic nació en 2024 de la mano de <strong>Valentina y Bautista</strong>, que cansados de
+        ver siempre las mismas esponjas de poca duración decidieron crear un producto diferente:
+        una esponja multiuso, resistente, divertida y de alta calidad.
+      </p>
+      <p class="lead lead--light reveal" style="--d:.22s">
+        A pesar de las dudas y los miedos iniciales, el impulso de romper con la monotonía y
+        ofrecer algo mejor fue más fuerte. Hoy Spongic es sinónimo de innovación, calidad y un
+        toque de diversión en cada rincón del hogar.
+      </p>
+    </div>
+
+    <div class="historia__aside reveal" style="--d:.2s">
+      <div class="quote">
+        <span class="quote__mark" aria-hidden="true">“</span>
+        <p>Queríamos que lavar los platos deje de ser lo más aburrido del día.</p>
+        <footer>Valentina &amp; Bautista — fundadores</footer>
+      </div>
+      <dl class="stats">
+        <div><dt>2024</dt><dd>Año de fundación</dd></div>
+        <div><dt>100%</dt><dd>Producción nacional</dd></div>
+        <div><dt>3</dt><dd>Superpoderes por esponja</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FAQ ============================ -->
+<section class="section section--cream" id="faq">
+  <div class="wrap wrap--narrow">
+    <header class="section__head section__head--center">
+      <p class="kicker reveal">Preguntas</p>
+      <h2 class="h2 reveal" style="--d:.08s">Lo que todos nos preguntan</h2>
+    </header>
+
+    <div class="faq reveal" style="--d:.12s">
+      <details class="faq__item">
+        <summary>¿Cómo funciona lo de la temperatura?</summary>
+        <p>La espuma de Spongic es termosensible: cuanto más caliente el agua, más suave y flexible se pone. Con agua fría queda firme, ideal para restos pegados. No hace falta hacer nada especial, solo abrir la canilla.</p>
+      </details>
+      <details class="faq__item">
+        <summary>¿Cuánto dura una Spongic?</summary>
+        <p>Bastante más que una esponja común. La duración exacta depende del uso, pero está pensada para aguantar el ritmo de una cocina de todos los días sin desarmarse.</p>
+      </details>
+      <details class="faq__item">
+        <summary>¿Sirve para superficies delicadas?</summary>
+        <p>Sí. Usándola con agua caliente se vuelve ultrasuave, así que podés usarla en copas, vidrio y antiadherentes.</p>
+      </details>
+      <details class="faq__item">
+        <summary>¿Cómo la limpio?</summary>
+        <p>Enjuagala con agua caliente y apretala bien para sacarle el agua. Dejala en un lugar aireado para que se seque entre uso y uso.</p>
+      </details>
+      <details class="faq__item">
+        <summary>¿Hacen envíos?</summary>
+        <p id="faqEnvio">Sí, hacemos envíos. Escribinos por WhatsApp y coordinamos la entrega según tu zona.</p>
+      </details>
+      <details class="faq__item">
+        <summary>¿Cómo pago?</summary>
+        <p>Armás tu pedido acá, lo confirmás por WhatsApp y ahí coordinamos el medio de pago que te quede más cómodo.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ CTA FINAL ============================ -->
+<section class="cta-final">
+  <div class="wrap cta-final__inner">
+    <h2 class="reveal">Ahora te toca<br>apretar y probar.</h2>
+    <div class="cta-final__actions reveal" style="--d:.1s">
+      <a href="#packs" class="btn btn--primary btn--lg">Elegir mi pack</a>
+      <a class="btn btn--ghost-light btn--lg" data-cfg-href="whatsapp" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__brand">
+      <span class="wordmark wordmark--sm">Spongic</span>
+      <p>Esponja inteligente. Moldeable, más duradera y termosensible.<br>Hecha en Argentina desde 2024.</p>
+    </div>
+    <nav class="footer__nav" aria-label="Pie">
+      <a href="#producto">Producto</a>
+      <a href="#tecnologia">Termosensible</a>
+      <a href="#packs">Comprar</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+    <div class="footer__contact">
+      <a data-cfg-href="instagram" target="_blank" rel="noopener">Instagram</a>
+      <a data-cfg-href="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
+      <a data-cfg-href="email">Mail</a>
+    </div>
+  </div>
+  <p class="footer__legal">© <span id="year"></span> Spongic — Todos los derechos reservados.</p>
+</footer>
+
+<!-- ============================ CARRITO ============================ -->
+<div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+
+<aside class="drawer" id="drawer" aria-labelledby="drawerTitle" aria-hidden="true" role="dialog" aria-modal="true">
+  <header class="drawer__head">
+    <h2 id="drawerTitle">Tu pedido</h2>
+    <button class="drawer__close" id="drawerClose" aria-label="Cerrar carrito">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </header>
+
+  <div class="drawer__ship" id="shipBar" hidden>
+    <div class="shipbar"><span id="shipFill"></span></div>
+    <p id="shipMsg"></p>
+  </div>
+
+  <div class="drawer__body" id="cartItems"></div>
+
+  <div class="drawer__empty" id="cartEmpty">
+    <svg viewBox="0 0 120 120" width="88" height="88" aria-hidden="true">
+      <circle cx="60" cy="52" r="34" fill="#DCEEF8" stroke="#0E2A6B" stroke-width="5"/>
+      <circle cx="50" cy="48" r="3.5" fill="#0E2A6B"/><circle cx="70" cy="48" r="3.5" fill="#0E2A6B"/>
+      <path d="M50 66 q10 -8 20 0" stroke="#0E2A6B" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <p>Tu carrito está vacío</p>
+    <button class="btn btn--primary" id="emptyCta">Ver packs</button>
+  </div>
+
+  <footer class="drawer__foot" id="cartFoot" hidden>
+    <div class="drawer__total">
+      <span>Total</span>
+      <strong id="cartTotal">$0</strong>
+    </div>
+    <p class="drawer__note">El envío se coordina por WhatsApp según tu zona.</p>
+    <button class="btn btn--wa btn--block" id="checkoutBtn">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81s-.4-.12-.56.13-.64.81-.79.98-.29.19-.54.06a6.7 6.7 0 0 1-1.98-1.22 7.5 7.5 0 0 1-1.37-1.71c-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44s.17-.25.25-.42a.46.46 0 0 0-.02-.44c-.06-.12-.56-1.35-.76-1.85s-.4-.42-.56-.43h-.47a.9.9 0 0 0-.66.31 2.77 2.77 0 0 0-.87 2.07 4.83 4.83 0 0 0 1.01 2.56 11 11 0 0 0 4.22 3.73c.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.19s.21-1.08.14-1.19-.22-.17-.47-.29"/>
+      </svg>
+      Confirmar por WhatsApp
+    </button>
+  </footer>
+</aside>
+
+<!-- toast -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
