@@ -123,11 +123,20 @@ El logotipo, el personaje y el sello son los **archivos originales de la marca**
 | `logo-lockup.png` | Logotipo + "Esponja Inteligente" | Hero |
 | `mascota.png` | El personaje | Hero y envase |
 | `sello.png` | "Apretá y probá" | Hero |
+| `moldeable.png` · `duradera.png` · `termosensible.png` | Las tres esponjas | Una en cada tarjeta de "Top 3 razones" |
 | `favicon-32.png` / `favicon-180.png` | Ícono de pestaña y de iOS | Recortados del personaje |
 
 Los archivos tal como se subieron quedaron en `assets/img/originales/`, en
 resolución completa. Los que usa la página están recortados al contenido y
 reducidos a tamaño de uso — si necesitás regenerarlos, salen de ahí.
+
+Las tres esponjas venían sobre fondo azul y con la palabra abajo. Se les quitó
+el fondo, se recortó el texto y se redujo la paleta: pasaron de 4,1 MB entre las
+tres a 83 KB, sin diferencia visible al tamaño en que se muestran. Si querés
+cambiarlas, subí las nuevas y avisá — el recorte no es manual, sale de un script.
+
+Las tres tienen proporciones distintas, así que en las tarjetas se igualan por
+altura (`--alto` en `.card__icon`) para que se vean del mismo tamaño.
 
 **Sobre el halo blanco:** el logotipo tiene contorno azul, así que sobre los
 fondos azules del sitio necesita despegarse. La clase `.sticker` le agrega un
