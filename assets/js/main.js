@@ -140,68 +140,6 @@
     Object.keys(map).forEach(function (id) { io.observe(document.getElementById(id)); });
   }
 
-  /* --------------------------------------- esponja del hero: apretá y probá */
-
-  function apretaEsponja() {
-    var btn   = $('#apreta');
-    var gotas = $('#apretaGotas');
-    var pista = $('#apretaPista');
-    if (!btn) return;
-
-    var quieto = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var tocada = false;
-    var timer;
-
-    function salpicar() {
-      // ráfaga de gotas en abanico hacia arriba
-      var n = 7 + Math.floor(Math.random() * 4);
-      for (var i = 0; i < n; i++) {
-        var g = document.createElement('i');
-        var ang = (-160 + Math.random() * 140) * Math.PI / 180;
-        var dist = 85 + Math.random() * 105;
-        g.style.setProperty('--dx', Math.cos(ang) * dist + 'px');
-        g.style.setProperty('--dy', Math.sin(ang) * dist + 'px');
-        g.style.setProperty('--s', (11 + Math.random() * 11).toFixed(1) + 'px');
-        g.style.setProperty('--t', (0.6 + Math.random() * 0.45).toFixed(2) + 's');
-        gotas.appendChild(g);
-        g.addEventListener('animationend', function () { this.remove(); });
-      }
-    }
-
-    function apretar() {
-      if (btn.classList.contains('is-on')) return;   // sin re-disparar a mitad
-      btn.classList.add('is-on');
-      if (!quieto) salpicar();
-      setTimeout(function () { btn.classList.remove('is-on'); }, 680);
-    }
-
-    function usada() {
-      if (tocada) return;
-      tocada = true;
-      clearTimeout(timer);
-      if (pista) pista.classList.add('se-va');
-    }
-
-    btn.addEventListener('pointerdown', function () { usada(); apretar(); });
-    btn.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); usada(); apretar(); }
-    });
-
-    // si nadie la toca, se aprieta sola un par de veces para enseñar el gesto
-    if (!quieto) {
-      var demos = 0;
-      (function autodemo() {
-        timer = setTimeout(function () {
-          if (tocada) return;
-          apretar();
-          if (++demos < 3) autodemo();
-        }, demos === 0 ? 2600 : 5200);
-      })();
-    } else if (pista) {
-      pista.classList.add('se-va');
-    }
-  }
-
   /* ------------------------------------------------- demo termosensible */
 
   function demo() {
@@ -506,7 +444,6 @@
     wireConfigLinks();
     bubbles();
     nav();
-    apretaEsponja();
     demo();
     renderPacks();
     wireDrawer();

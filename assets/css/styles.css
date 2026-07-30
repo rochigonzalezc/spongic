@@ -257,121 +257,16 @@ table{border-collapse:collapse;width:100%}
 .hero__lead strong{color:var(--yellow);font-weight:700}
 .hero__cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
 
-/* ---------- Entrada del hero ----------
-   Secuencia al cargar: sello, logo, texto, botones y por último los
-   personajes entrando por los costados. */
-@keyframes entraArriba{
-  from{opacity:0;transform:translateY(26px)}
-  to  {opacity:1;transform:none}
-}
-.entra{animation:entraArriba .75s var(--ease) var(--d,0s) backwards}
-
-/* el logo cae y rebota: squash al tocar y recuperación */
-@keyframes entraLogo{
-  0%  {opacity:0;transform:translateY(-70px) scale(.86)}
-  55% {opacity:1;transform:translateY(0)     scale(1.04,.94)}
-  72% {transform:translateY(-9px) scale(.99,1.02)}
-  86% {transform:translateY(0)    scale(1.01,.99)}
-  100%{opacity:1;transform:none}
-}
-.entra-logo{animation:entraLogo 1.05s var(--ease) .18s backwards}
-
-@keyframes entraDerecha{
-  from{opacity:0;transform:translateX(70px) rotate(7deg)}
-  to  {opacity:1;transform:none}
-}
-@keyframes entraIzquierda{
-  from{opacity:0;transform:translateX(-70px) rotate(-7deg)}
-  to  {opacity:1;transform:none}
-}
-
 .hero__mascot{
   position:absolute;right:0;bottom:0;width:min(20vw,262px);
   z-index:1;pointer-events:none;
-  animation:entraDerecha .85s var(--ease) .85s backwards;
+  animation:float 6s ease-in-out infinite;
 }
-/* el flotar va en la imagen para no pisar el transform de la entrada */
-.hero__mascot .mascot{animation:float 6s ease-in-out infinite}
 /* el personaje ya trae su propio contorno, así que sólo necesita despegue */
 .mascot{
   filter:drop-shadow(0 0 2px rgba(255,255,255,.9)) drop-shadow(0 12px 20px rgba(8,24,63,.35));
 }
 @keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-22px) rotate(2deg)}}
-
-/* ---------- Esponja que se aprieta ---------- */
-.hero__sponge{
-  position:absolute;left:0;bottom:0;width:min(17vw,215px);
-  z-index:2;
-  animation:entraIzquierda .85s var(--ease) .95s backwards;
-}
-.apreta{
-  display:block;width:100%;padding:0;position:relative;
-  background:none;border:0;cursor:pointer;
-  -webkit-tap-highlight-color:transparent;
-}
-.apreta__img{
-  width:100%;
-  transform-origin:bottom center;   /* está parada: se achata contra el piso */
-  animation:respirar 3.4s ease-in-out infinite;
-  filter:drop-shadow(0 0 2px rgba(255,255,255,.85)) drop-shadow(0 14px 18px rgba(8,24,63,.4));
-}
-/* respiración: apenas se nota, pero delata que está viva */
-@keyframes respirar{
-  0%,100%{transform:scale(1,1)}
-  50%    {transform:scale(1.015,.985)}
-}
-/* el apretón: achata, sobrepasa al volver y se acomoda */
-@keyframes apretar{
-  0%  {transform:scale(1,1)}
-  20% {transform:scale(1.16,.7)}
-  48% {transform:scale(.94,1.09)}
-  70% {transform:scale(1.04,.97)}
-  87% {transform:scale(.99,1.01)}
-  100%{transform:scale(1,1)}
-}
-.apreta.is-on .apreta__img{animation:apretar .66s var(--ease)}
-
-/* gotas: el JS las crea con un ángulo al azar en --dx/--dy */
-.apreta__gotas{position:absolute;inset:0;pointer-events:none}
-.apreta__gotas i{
-  /* salen por arriba: sobre el amarillo de la esponja no se distinguen */
-  position:absolute;left:50%;top:16%;
-  width:var(--s,14px);height:var(--s,14px);border-radius:50% 50% 50% 0;
-  background:radial-gradient(circle at 34% 30%,#fff,#B7E4FA 55%,#6FC0E8);
-  border:2px solid rgba(14,42,107,.5);
-  box-shadow:0 0 0 1.5px rgba(255,255,255,.5);
-  transform:rotate(-45deg);
-  animation:salpicar var(--t,.75s) var(--ease) forwards;
-}
-@keyframes salpicar{
-  0%  {opacity:0;transform:translate(0,0) rotate(-45deg) scale(.3)}
-  12% {opacity:1}
-  68% {opacity:1}
-  100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(-45deg) scale(1.05)}
-}
-
-.apreta__pista{
-  /* centrada sobre la esponja: al costado quedaba pegada al párrafo */
-  position:absolute;top:-13%;left:50%;
-  font-family:var(--font-display);font-weight:600;font-size:.82rem;
-  white-space:nowrap;color:var(--blue-900);
-  background:var(--yellow);border:2.5px solid var(--blue-900);
-  padding:.35rem .8rem;border-radius:var(--r-pill);
-  box-shadow:0 3px 0 var(--blue-900);
-  animation:pistaBota 1.6s ease-in-out infinite;
-  transition:opacity .35s,transform .35s;
-}
-.apreta__pista::after{                 /* colita del globo, apuntando abajo */
-  content:'';position:absolute;left:50%;margin-left:-5px;bottom:-7px;
-  width:10px;height:10px;background:var(--yellow);
-  border-right:2.5px solid var(--blue-900);border-bottom:2.5px solid var(--blue-900);
-  transform:rotate(45deg);
-}
-@keyframes pistaBota{
-  0%,100%{transform:translateX(-50%) translateY(0) rotate(-3deg)}
-  50%    {transform:translateX(-50%) translateY(-6px) rotate(2deg)}
-}
-.apreta__pista.se-va{opacity:0;transform:translateX(-50%) scale(.8);pointer-events:none}
 
 /* burbujas de fondo */
 .hero__bubbles{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
@@ -849,8 +744,7 @@ input[type=range]::-moz-range-thumb{
 /* ---------- Responsive ---------- */
 @media (max-width:1000px){
   .tech,.historia{grid-template-columns:1fr}
-  .hero__mascot{width:min(30vw,215px);right:-4%}
-  .hero__sponge{width:min(24vw,170px);left:-2%}
+  .hero__mascot{width:min(38vw,240px);bottom:-8%;right:-6%;opacity:.5}
   .footer__inner{grid-template-columns:1fr 1fr}
   .footer__brand{grid-column:1/-1}
 }
@@ -858,14 +752,9 @@ input[type=range]::-moz-range-thumb{
   .nav__links{display:none}
   .nav__ig{display:none}
   .cart-btn__label{display:none}
+  .stamp{width:76px;top:auto;bottom:1.5rem;right:1.2rem}
   .hero{min-height:auto;padding-top:calc(var(--nav-h) + 2.5rem)}
-  /* franja reservada al pie del hero: la esponja y la mascota van una en
-     cada esquina y el sello queda en el medio, sin pisar los botones */
-  .hero__inner{padding-bottom:12rem}
-  .hero__mascot{width:min(38vw,158px);right:0;bottom:0}
-  .hero__sponge{width:min(31vw,128px);left:0;bottom:0}
-  .apreta__pista{font-size:.7rem;padding:.26rem .55rem}
-  .stamp{width:72px;top:auto;bottom:2.5rem;right:auto;left:50%;margin-left:-36px}
+  .hero__mascot{position:relative;right:auto;bottom:auto;margin:2.5rem auto 0;width:190px;opacity:1}
   .pack--featured{transform:none}
   .compare__table th,.compare__table td{padding:.85rem .7rem;font-size:.88rem}
   .stats{grid-template-columns:1fr;gap:.6rem}
