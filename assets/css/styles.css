@@ -72,6 +72,9 @@ table{border-collapse:collapse;width:100%}
 .section--cream{background:var(--cream)}
 .section--blue{background:var(--blue-700);color:#fff}
 .section--packs{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%)}
+/* packs va pegada a "Top 3 razones" y las dos son claras: sin este recorte
+   se suman los dos padding y queda un hueco enorme entre medio */
+.section--cream + .section--packs{padding-top:clamp(1.5rem,3vw,3rem)}
 
 .section__head{margin-bottom:clamp(2.5rem,5vw,4rem);max-width:min(100%,760px)}
 .section__head--center{max-width:none;text-align:center}

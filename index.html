@@ -32,8 +32,8 @@
 
     <nav class="nav__links" aria-label="Principal">
       <a href="#producto">Producto</a>
-      <a href="#tecnologia">Termosensible</a>
       <a href="#packs">Comprar</a>
+      <a href="#tecnologia">Termosensible</a>
       <a href="#historia">Historia</a>
     </nav>
 
@@ -144,6 +144,47 @@
   </div>
 </section>
 
+<!-- ============================ PACKS ============================ -->
+<section class="section section--packs" id="packs">
+  <div class="wrap">
+    <header class="section__head section__head--center">
+      <p class="kicker reveal">Elegí tu pack</p>
+      <h2 class="h2 reveal" style="--d:.08s">Llevá Spongic a tu cocina</h2>
+      <p class="lead lead--center reveal" style="--d:.16s" id="envioNota"></p>
+    </header>
+
+    <!-- Ilustración del packaging (recreada en CSS: reemplazable por una foto real) -->
+    <figure class="packshot reveal" style="--d:.1s">
+      <div class="packshot__bag">
+        <span class="packshot__crimp" aria-hidden="true"></span>
+        <div class="packshot__yellow">
+          <span class="packshot__pores" aria-hidden="true"></span>
+          <img src="assets/img/logo.png" alt="Spongic" class="logo packshot__logo">
+          <span class="packshot__tagline">Esponja Inteligente</span>
+          <img class="packshot__mascot" src="assets/img/mascota.png" alt="" aria-hidden="true">
+          <svg class="packshot__foam" viewBox="0 0 400 46" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 26q25-20 50 0t50 0 50 0 50 0 50 0 50 0 50 0 50 0V46H0Z" fill="#2E8B9E"/>
+          </svg>
+        </div>
+        <ul class="packshot__claims">
+          <li>Esponja de cocina versátil</li>
+          <li>Ultrasuave y más resistente</li>
+          <li>Agua caliente para mayor suavidad</li>
+        </ul>
+        <span class="packshot__crimp" aria-hidden="true"></span>
+        <span class="packshot__badge" aria-hidden="true">Apretá<br>y probá</span>
+      </div>
+      <figcaption>Así te llega tu Spongic</figcaption>
+    </figure>
+
+    <div class="packs" id="packsGrid" role="list"></div>
+
+    <p class="packs__foot reveal">
+      Armá tu pedido y lo terminamos por WhatsApp. Sin cuenta, sin vueltas.
+    </p>
+  </div>
+</section>
+
 <!-- ============================ TECNOLOGÍA / DEMO ============================ -->
 <section class="section section--blue" id="tecnologia">
   <div class="wrap tech">
@@ -216,47 +257,6 @@
         </tbody>
       </table>
     </div>
-  </div>
-</section>
-
-<!-- ============================ PACKS ============================ -->
-<section class="section section--packs" id="packs">
-  <div class="wrap">
-    <header class="section__head section__head--center">
-      <p class="kicker reveal">Elegí tu pack</p>
-      <h2 class="h2 reveal" style="--d:.08s">Llevá Spongic a tu cocina</h2>
-      <p class="lead lead--center reveal" style="--d:.16s" id="envioNota"></p>
-    </header>
-
-    <!-- Ilustración del packaging (recreada en CSS: reemplazable por una foto real) -->
-    <figure class="packshot reveal" style="--d:.1s">
-      <div class="packshot__bag">
-        <span class="packshot__crimp" aria-hidden="true"></span>
-        <div class="packshot__yellow">
-          <span class="packshot__pores" aria-hidden="true"></span>
-          <img src="assets/img/logo.png" alt="Spongic" class="logo packshot__logo">
-          <span class="packshot__tagline">Esponja Inteligente</span>
-          <img class="packshot__mascot" src="assets/img/mascota.png" alt="" aria-hidden="true">
-          <svg class="packshot__foam" viewBox="0 0 400 46" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M0 26q25-20 50 0t50 0 50 0 50 0 50 0 50 0 50 0 50 0V46H0Z" fill="#2E8B9E"/>
-          </svg>
-        </div>
-        <ul class="packshot__claims">
-          <li>Esponja de cocina versátil</li>
-          <li>Ultrasuave y más resistente</li>
-          <li>Agua caliente para mayor suavidad</li>
-        </ul>
-        <span class="packshot__crimp" aria-hidden="true"></span>
-        <span class="packshot__badge" aria-hidden="true">Apretá<br>y probá</span>
-      </div>
-      <figcaption>Así te llega tu Spongic</figcaption>
-    </figure>
-
-    <div class="packs" id="packsGrid" role="list"></div>
-
-    <p class="packs__foot reveal">
-      Armá tu pedido y lo terminamos por WhatsApp. Sin cuenta, sin vueltas.
-    </p>
   </div>
 </section>
 
@@ -351,8 +351,8 @@
     </div>
     <nav class="footer__nav" aria-label="Pie">
       <a href="#producto">Producto</a>
-      <a href="#tecnologia">Termosensible</a>
       <a href="#packs">Comprar</a>
+      <a href="#tecnologia">Termosensible</a>
       <a href="#faq">Preguntas</a>
     </nav>
     <div class="footer__contact">
