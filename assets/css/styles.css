@@ -71,6 +71,9 @@ table{border-collapse:collapse;width:100%}
 .section{padding:clamp(4.5rem,9vw,8rem) 0;position:relative}
 .section--cream{background:var(--cream)}
 .section--blue{background:var(--blue-700);color:#fff}
+/* "Cómo funciona" e "Historia" quedaron pegadas y las dos son azules: la
+   segunda va en el azul profundo para que no se lean como un solo bloque */
+.section--blue + .section--blue{background:var(--blue-900)}
 .section--packs{background:linear-gradient(180deg,var(--cream) 0%,var(--cream-2) 100%)}
 /* packs va pegada a "Top 3 razones" y las dos son claras: sin este recorte
    se suman los dos padding y queda un hueco enorme entre medio */
