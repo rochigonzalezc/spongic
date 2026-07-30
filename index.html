@@ -240,7 +240,10 @@
           <div class="demo__steam" aria-hidden="true"><i></i><i></i><i></i></div>
           <button class="sponge" id="sponge" aria-label="Apretá la esponja">
             <span class="sponge__body">
-              <span class="sponge__pores" aria-hidden="true"></span>
+              <!-- los poros los dibuja el JS al azar: un patrón CSS repetido
+                   deja ver la grilla y parece lunares, no espuma -->
+              <svg class="sponge__pores" id="spongePores" viewBox="0 0 142 100"
+                   preserveAspectRatio="none" aria-hidden="true"></svg>
             </span>
           </button>
           <p class="demo__hint">Tocá la esponja para apretarla</p>

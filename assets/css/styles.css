@@ -370,10 +370,13 @@ table{border-collapse:collapse;width:100%}
   min-height:230px;margin-bottom:1.8rem;
 }
 .sponge{
-  width:min(74%,250px);aspect-ratio:1.45/1;
-  padding:0;border-radius:calc(10px + var(--soft,0) * 46px);
+  width:min(78%,272px);aspect-ratio:1.42/1;
+  padding:0;border-radius:calc(9px + var(--soft,0) * 44px);
   background:
-    radial-gradient(circle at 30% 25%,#FFF3A8,transparent 55%),
+    /* cara superior iluminada y sombra al pie: le dan volumen de bloque */
+    linear-gradient(180deg,rgba(255,255,255,.4),rgba(255,255,255,0) 26%),
+    linear-gradient(0deg,rgba(122,80,0,.3),rgba(122,80,0,0) 20%),
+    radial-gradient(ellipse at 28% 22%,#FFF6BE,transparent 58%),
     linear-gradient(150deg,var(--sponge-a,#FFE24D),var(--sponge-b,#F5C400));
   border:4px solid var(--blue-900);
   box-shadow:0 10px 0 var(--blue-900);
@@ -382,14 +385,8 @@ table{border-collapse:collapse;width:100%}
   position:relative;overflow:hidden;
 }
 .sponge__body{position:absolute;inset:0;display:block}
-.sponge__pores{
-  position:absolute;inset:0;display:block;opacity:.5;
-  background-image:
-    radial-gradient(circle,rgba(14,42,107,.45) 1.4px,transparent 1.6px),
-    radial-gradient(circle,rgba(14,42,107,.32) 1.1px,transparent 1.3px);
-  background-size:15px 15px,23px 23px;
-  background-position:0 0,8px 11px;
-}
+/* los círculos los inyecta el JS con posiciones y tamaños al azar */
+.sponge__pores{position:absolute;inset:0;width:100%;height:100%;display:block}
 .sponge.is-squished{transform:scaleY(.72) scaleX(1.07);box-shadow:0 3px 0 var(--blue-900)}
 .demo__hint{
   margin-top:1rem;font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;

@@ -140,6 +140,68 @@
     Object.keys(map).forEach(function (id) { io.observe(document.getElementById(id)); });
   }
 
+  /* ----------------------------------------- poros de la esponja de la demo */
+
+  function porosEsponja() {
+    var svg = $('#spongePores');
+    if (!svg) return;
+
+    var W = 142, H = 100;
+    var puestos = [];
+    var ns = 'http://www.w3.org/2000/svg';
+
+    // mezcla de calibres: muchos chicos, algunos medianos, pocos grandes
+    var calibres = [
+      { n: 130, min: 0.6, max: 1.4 },
+      { n: 46,  min: 1.5, max: 2.6 },
+      { n: 14,  min: 2.8, max: 4.2 }
+    ];
+
+    function libre(x, y, r) {
+      for (var i = 0; i < puestos.length; i++) {
+        var p = puestos[i];
+        var dx = p.x - x, dy = p.y - y;
+        if (Math.sqrt(dx * dx + dy * dy) < p.r + r + 0.8) return false;
+      }
+      return true;
+    }
+
+    var frag = document.createDocumentFragment();
+
+    // de grande a chico: los grandes necesitan el lugar libre
+    for (var c = calibres.length - 1; c >= 0; c--) {
+      var cal = calibres[c];
+      for (var i = 0, intentos = 0; i < cal.n && intentos < cal.n * 30; intentos++) {
+        var r = cal.min + Math.random() * (cal.max - cal.min);
+        var x = r + Math.random() * (W - r * 2);
+        var y = r + Math.random() * (H - r * 2);
+        if (!libre(x, y, r)) continue;
+        puestos.push({ x: x, y: y, r: r });
+        i++;
+
+        var poro = document.createElementNS(ns, 'circle');
+        poro.setAttribute('cx', x.toFixed(2));
+        poro.setAttribute('cy', y.toFixed(2));
+        poro.setAttribute('r', r.toFixed(2));
+        poro.setAttribute('fill', 'rgba(138,88,0,' + (0.34 + Math.random() * 0.28).toFixed(2) + ')');
+        frag.appendChild(poro);
+
+        // Los medianos y grandes llevan una luz tenue abajo a la derecha: es
+        // el fondo del agujero recibiendo luz. Arriba a la izquierda los haría
+        // ver como burbujas salientes en lugar de huecos.
+        if (r > 1.5) {
+          var luz = document.createElementNS(ns, 'circle');
+          luz.setAttribute('cx', (x + r * 0.26).toFixed(2));
+          luz.setAttribute('cy', (y + r * 0.3).toFixed(2));
+          luz.setAttribute('r', (r * 0.44).toFixed(2));
+          luz.setAttribute('fill', 'rgba(255,246,190,.28)');
+          frag.appendChild(luz);
+        }
+      }
+    }
+    svg.appendChild(frag);
+  }
+
   /* ------------------------------------------------- demo termosensible */
 
   function demo() {
@@ -157,9 +219,10 @@
       out.textContent = t + '°';
       sponge.style.setProperty('--soft', p.toFixed(3));
 
-      // color: frío -> amarillo pálido/verdoso; caliente -> naranja cálido
-      var a = 'hsl(' + (54 - 26 * p) + ' 100% ' + (66 - 6 * p) + '%)';
-      var b = 'hsl(' + (46 - 30 * p) + ' 92% ' + (52 - 6 * p) + '%)';
+      // Vira de amarillo frío a ámbar cálido. El giro es corto a propósito:
+      // llevándolo hasta el naranja dejaba de parecerse a la esponja real.
+      var a = 'hsl(' + (54 - 12 * p) + ' 100% ' + (66 - 4 * p) + '%)';
+      var b = 'hsl(' + (46 - 16 * p) + ' 92% ' + (52 - 4 * p) + '%)';
       sponge.style.setProperty('--sponge-a', a);
       sponge.style.setProperty('--sponge-b', b);
 
@@ -444,6 +507,7 @@
     wireConfigLinks();
     bubbles();
     nav();
+    porosEsponja();
     demo();
     renderPacks();
     wireDrawer();
