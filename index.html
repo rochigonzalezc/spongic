@@ -61,22 +61,32 @@
   <div class="hero__bubbles" aria-hidden="true"></div>
 
   <div class="hero__inner">
-    <p class="hero__eyebrow reveal">
+    <p class="hero__eyebrow entra" style="--d:.1s">
       <span class="dot"></span> Hecha en Argentina · Desde 2024
     </p>
 
     <h1 class="hero__title">
-      <img src="assets/img/logo-lockup.png" alt="Spongic — Esponja Inteligente" class="logo logo--hero sticker reveal" style="--d:.05s" width="1800" height="733">
+      <img src="assets/img/logo-lockup.png" alt="Spongic — Esponja Inteligente"
+           class="logo logo--hero sticker entra-logo" width="1800" height="733">
     </h1>
 
-    <p class="hero__lead reveal" style="--d:.25s">
+    <p class="hero__lead entra" style="--d:.55s">
       La esponja que <strong>cambia con la temperatura</strong>. Con agua caliente se vuelve
       ultrasuave; con fría, firme para lo difícil. Moldeable, más duradera y — sí — divertida.
     </p>
 
-    <div class="hero__cta reveal" style="--d:.35s">
+    <div class="hero__cta entra" style="--d:.68s">
       <a href="#packs" class="btn btn--primary btn--lg">Comprar ahora</a>
       <a href="#tecnologia" class="btn btn--ghost-light btn--lg">Ver cómo funciona</a>
+    </div>
+
+    <!-- "Apretá y probá", en serio: se achata y salpica al tocarla -->
+    <div class="hero__sponge">
+      <button class="apreta" id="apreta" aria-label="Apretá la esponja">
+        <img src="assets/img/moldeable.png" alt="" class="apreta__img" width="400" height="514">
+        <span class="apreta__gotas" id="apretaGotas" aria-hidden="true"></span>
+      </button>
+      <span class="apreta__pista" id="apretaPista" aria-hidden="true">¡Apretame!</span>
     </div>
 
     <div class="hero__mascot" aria-hidden="true">
