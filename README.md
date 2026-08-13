@@ -9,7 +9,8 @@ assets/
   css/styles.css
   js/config.js   ← lo único que necesitás editar
   js/main.js
-  img/favicon.svg
+  img/            logotipos, personaje, esponjas y favicons
+  fonts/          Luckiest Guy (títulos) y Lato (texto)
 ```
 
 ---
@@ -153,7 +154,13 @@ foto real es la mejor inversión que le queda a esta página.
 
 ## Detalles técnicos
 
-- Sin dependencias, sin build. Una sola fuente externa (Google Fonts).
+- Sin dependencias, sin build y **sin pedidos a servidores ajenos**: las
+  tipografías son archivos propios en `assets/fonts/`, no vienen de Google
+  Fonts. La página funciona igual sin internet una vez cargada.
+- **Luckiest Guy** para títulos y botones, **Lato** para el texto corrido. De
+  Lato sólo tenemos el corte Bold, así que está declarado para todo el rango
+  de peso: cualquier `font-weight` cae en ese archivo en vez de degradar a una
+  tipografía del sistema.
 - Responsive de 320px para arriba, verificado sin scroll horizontal.
 - Navegable por teclado: el carrito atrapa el foco y cierra con `Escape`.
 - Respeta `prefers-reduced-motion`: quien tenga animaciones reducidas en su

@@ -75,20 +75,65 @@
 
   /* ------------------------------------------------------------- burbujas */
 
-  function bubbles() {
-    var host = $('.hero__bubbles');
+  function heroBlobs() {
+    var host = $('.hero-blobs');
     if (!host || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var colors = ['rgba(240,180,41,.55)', 'rgba(232,117,44,.4)', 'rgba(185,196,232,.45)', 'rgba(240,180,41,.35)'];
     var frag = document.createDocumentFragment();
-    for (var i = 0; i < 16; i++) {
+    colors.forEach(function (c, i) {
       var b = document.createElement('i');
-      var size = 10 + Math.random() * 54;
+      var size = 220 + Math.random() * 200;
       b.style.width = b.style.height = size + 'px';
-      b.style.left = Math.random() * 100 + '%';
-      b.style.animationDuration = (11 + Math.random() * 14) + 's';
-      b.style.animationDelay = (-Math.random() * 20) + 's';
+      b.style.left = (Math.random() * 90) + '%';
+      b.style.top = (10 + Math.random() * 70) + '%';
+      b.style.background = c;
+      b.style.animationDuration = (12 + Math.random() * 9) + 's';
+      b.style.animationDelay = (-Math.random() * 10) + 's';
       frag.appendChild(b);
-    }
+    });
     host.appendChild(frag);
+  }
+
+  function packsBlobs() {
+    var host = $('.packs-blobs');
+    if (!host || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var colors = ['rgba(232,117,44,.55)', 'rgba(240,180,41,.42)', 'rgba(185,196,232,.4)'];
+    var frag = document.createDocumentFragment();
+    colors.forEach(function (c, i) {
+      var b = document.createElement('i');
+      var size = 300 + Math.random() * 180;
+      b.style.width = b.style.height = size + 'px';
+      b.style.left = (8 + i * 33 + Math.random() * 12) + '%';
+      b.style.top = (10 + Math.random() * 65) + '%';
+      b.style.background = c;
+      b.style.animationDuration = (13 + Math.random() * 9) + 's';
+      b.style.animationDelay = (-Math.random() * 10) + 's';
+      frag.appendChild(b);
+    });
+    host.appendChild(frag);
+  }
+
+  /* --------------------------------------------------------- mascota camina
+     Entra caminando desde el borde del hero; al terminar la animación de
+     traslado (walkAcross) pasa de "caminando" a "llegó", que es lo que
+     dispara el brazo levantado señalando el CTA. Solo desktop. */
+  function mascotWalk() {
+    var walker = $('#heroWalker');
+    if (!walker) return;
+    if (window.matchMedia('(max-width: 900px)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    setTimeout(function () {
+      walker.classList.add('is-walking');
+    }, 2900);
+
+    walker.addEventListener('animationend', function handler(e) {
+      if (e.animationName === 'walkAcross') {
+        walker.classList.remove('is-walking');
+        walker.classList.add('is-arrived');
+        walker.removeEventListener('animationend', handler);
+      }
+    });
   }
 
   /* -------------------------------------------------------------- reveals */
@@ -338,7 +383,7 @@
         '<ul class="pack__list">' +
           (p.beneficios || []).map(function (b) { return '<li>' + b + '</li>'; }).join('') +
         '</ul>' +
-        '<button class="btn ' + (p.destacado ? 'btn--primary' : '') + ' btn--block" data-add="' + p.id + '">' +
+        '<button class="btn btn--primary btn--block" data-add="' + p.id + '">' +
           'Agregar al carrito' +
         '</button>';
 
@@ -501,17 +546,242 @@
     });
   }
 
+  /* ------------------------------------------------------- espina térmica
+     Riesgo estético: el eje frío→caliente deja de vivir solo en el demo de
+     "Cómo funciona" y pasa a ser el hilo de TODA la navegación. Una barra
+     fija a la izquierda se llena con el scroll, del navy frío al naranja
+     caliente — la misma idea del producto, a escala de sitio entero. */
+  function thermoSpine() {
+    if (window.matchMedia('(max-width: 760px)').matches) return; // se guarda espacio en mobile
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var el = document.createElement('div');
+    el.className = 'thermo-spine';
+    el.innerHTML =
+      '<span class="thermo-spine__label thermo-spine__label--top">Fría</span>' +
+      '<span class="thermo-spine__track">' +
+        '<span class="thermo-spine__fill" id="thermoFill"></span>' +
+        '<span class="thermo-spine__dot" id="thermoDot"></span>' +
+      '</span>' +
+      '<span class="thermo-spine__label thermo-spine__label--bottom">Caliente</span>';
+    document.body.appendChild(el);
+
+    var fill = $('#thermoFill', el);
+    var dot  = $('#thermoDot', el);
+    var ticking = false;
+
+    function update() {
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - window.innerHeight;
+      var t = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+      doc.style.setProperty('--temp', t.toFixed(3));
+      fill.style.height = (t * 100) + '%';
+      dot.style.top = (t * 100) + '%';
+      ticking = false;
+    }
+
+    update();
+    window.addEventListener('scroll', function () {
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    window.addEventListener('resize', update);
+  }
+
+  /* --------------------------------------------------------- split-words
+     Envuelve cada palabra de un elemento en spans para poder animarlas
+     de a una. Recorre nodos de texto y respeta tags como <strong> que
+     ya estén adentro (no rompe el énfasis del copy). */
+  function wrapWords(node) {
+    if (node.nodeType === 3) {
+      var parts = node.textContent.split(/(\s+)/);
+      var frag = document.createDocumentFragment();
+      parts.forEach(function (part) {
+        if (part.trim() === '') {
+          frag.appendChild(document.createTextNode(part));
+        } else {
+          var outer = document.createElement('span');
+          outer.className = 'word';
+          var inner = document.createElement('span');
+          inner.className = 'word__inner';
+          inner.textContent = part;
+          outer.appendChild(inner);
+          frag.appendChild(outer);
+        }
+      });
+      node.parentNode.replaceChild(frag, node);
+    } else if (node.nodeType === 1) {
+      Array.prototype.slice.call(node.childNodes).forEach(wrapWords);
+    }
+  }
+
+  function heroWords() {
+    var el = $('.split-target');
+    if (!el) return;
+    wrapWords(el);
+    $$('.word', el).forEach(function (w, i) { w.style.setProperty('--wi', i); });
+    el.classList.add('split-ready');
+  }
+
+  /* ------------------------------------------------------- loader intro */
+  function loaderIntro() {
+    var lead = $('.split-target');
+    var loader = $('#loader');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!loader || reduced) {
+      if (lead) lead.classList.add('is-in');
+      return;
+    }
+    setTimeout(function () {
+      if (lead) lead.classList.add('is-in');
+    }, 2900);
+  }
+
+  /* ------------------------------------------------------- flip de letras
+     Cada letra del nav tiene dos caras superpuestas: la de relleno sólido
+     (visible) y una de solo contorno (rotada 90° hacia atrás). En hover,
+     la de relleno gira hacia arriba y sale, la de contorno gira y entra —
+     con un delay creciente por letra para que sea una ola, no un click. */
+  function letterFlip(selector) {
+    $$(selector).forEach(function (a) {
+      var text = a.textContent;
+      a.textContent = '';
+      var wrap = document.createElement('span');
+      wrap.className = 'flip-letters';
+      Array.prototype.forEach.call(text, function (ch, i) {
+        var letter = document.createElement('span');
+        letter.className = 'flip-letter';
+        letter.style.setProperty('--li', i);
+        var glyph = ch === ' ' ? '\u00A0' : ch;
+
+        var front = document.createElement('span');
+        front.className = 'flip-letter__face flip-letter__face--front';
+        front.textContent = glyph;
+
+        var back = document.createElement('span');
+        back.className = 'flip-letter__face flip-letter__face--back';
+        back.textContent = glyph;
+
+        letter.appendChild(front);
+        letter.appendChild(back);
+        wrap.appendChild(letter);
+      });
+      a.appendChild(wrap);
+      a.classList.add('flip-ready');
+    });
+  }
+
+  /* ------------------------------------------------------- vidrio + paralaje
+     Sigue el mouse dentro del elemento e inclina la tarjeta en 3D (--tx/--ty).
+     Sin brillo que persiga el cursor: solo la inclinación. */
+  function glassTilt(selector) {
+    $$(selector).forEach(function (el) {
+      el.classList.add('glass-tilt');
+      el.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width;
+        var py = (e.clientY - r.top) / r.height;
+        var tx = (0.5 - py) * 8;
+        var ty = (px - 0.5) * 8;
+        el.style.setProperty('--tx', tx.toFixed(2) + 'deg');
+        el.style.setProperty('--ty', ty.toFixed(2) + 'deg');
+      });
+      el.addEventListener('mouseleave', function () {
+        el.style.setProperty('--tx', '0deg');
+        el.style.setProperty('--ty', '0deg');
+      });
+    });
+  }
+
+  /* ------------------------------------------- split-words disparado por scroll
+     Igual que heroWords, pero para títulos que aparecen más abajo: se arma
+     una vez y se dispara con IntersectionObserver, no con un timeout fijo. */
+  function splitOnScroll(selector) {
+    var els = $$(selector);
+    if (!els.length) return;
+
+    els.forEach(function (el) {
+      wrapWords(el);
+      $$('.word', el).forEach(function (w, i) { w.style.setProperty('--wi', i); });
+      el.classList.add('split-ready');
+    });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      els.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: .4 });
+
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  /* ---------------------------------------------------------- cursor propio
+     Círculo naranja que sigue el mouse con un pelín de lag (lerp), y al
+     hacer click se achata como si se aplastara + una salpicadura orgánica
+     que crece y se disuelve en el punto del click. */
+  function customCursor() {
+    if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var cur = $('#cursor');
+    if (!cur) return;
+
+    var x = -50, y = -50, cx = -50, cy = -50;
+
+    document.addEventListener('mousemove', function (e) {
+      x = e.clientX; y = e.clientY;
+      cur.classList.add('is-active');
+    });
+    document.addEventListener('mouseleave', function () { cur.classList.remove('is-active'); });
+
+    function loop() {
+      cx += (x - cx) * 0.35;
+      cy += (y - cy) * 0.35;
+      cur.style.transform = 'translate(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px)';
+      requestAnimationFrame(loop);
+    }
+    loop();
+
+    document.addEventListener('mousedown', function (e) {
+      cur.classList.add('is-down');
+      var s = document.createElement('span');
+      s.className = 'cursor-splash';
+      s.style.left = e.clientX + 'px';
+      s.style.top = e.clientY + 'px';
+      document.body.appendChild(s);
+      s.addEventListener('animationend', function () { s.remove(); });
+    });
+    document.addEventListener('mouseup', function () { cur.classList.remove('is-down'); });
+  }
+
   /* ----------------------------------------------------------------- init */
 
   function init() {
     wireConfigLinks();
-    bubbles();
+    heroBlobs();
+    packsBlobs();
     nav();
     porosEsponja();
     demo();
     renderPacks();
+    glassTilt('.pack');
     wireDrawer();
     renderCart();
+    thermoSpine();
+    heroWords();
+    loaderIntro();
+    letterFlip('.nav__links a');
+    glassTilt('.hero__cta .btn, .cta-final__actions .btn');
+    splitOnScroll('.h2, .cta-final h2');
+    customCursor();
+    mascotWalk();
     reveals(); // después de renderPacks para observar las cards nuevas
   }
 
