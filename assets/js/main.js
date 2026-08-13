@@ -117,24 +117,6 @@
      Entra caminando desde el borde del hero; al terminar la animación de
      traslado (walkAcross) pasa de "caminando" a "llegó", que es lo que
      dispara el brazo levantado señalando el CTA. Solo desktop. */
-  function mascotWalk() {
-    var walker = $('#heroWalker');
-    if (!walker) return;
-    if (window.matchMedia('(max-width: 900px)').matches) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    setTimeout(function () {
-      walker.classList.add('is-walking');
-    }, 2900);
-
-    walker.addEventListener('animationend', function handler(e) {
-      if (e.animationName === 'walkAcross') {
-        walker.classList.remove('is-walking');
-        walker.classList.add('is-arrived');
-        walker.removeEventListener('animationend', handler);
-      }
-    });
-  }
 
   /* -------------------------------------------------------------- reveals */
 
@@ -781,7 +763,6 @@
     glassTilt('.hero__cta .btn, .cta-final__actions .btn');
     splitOnScroll('.h2, .cta-final h2');
     customCursor();
-    mascotWalk();
     reveals(); // después de renderPacks para observar las cards nuevas
   }
 

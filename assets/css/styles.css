@@ -300,60 +300,6 @@ table{border-collapse:collapse;width:100%}
 .hero__lead strong{color:var(--yellow);font-weight:700}
 .hero__cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
 
-/* ---------- Mascota caminante (SVG por piezas) ----------
-   Entra caminando desde el borde de la sección y, al llegar, levanta el
-   brazo para señalar "Comprar ahora". Piernas y brazo son grupos propios
-   dentro del SVG para poder animarlos por separado. Solo en desktop con
-   mouse real: en mobile el hero ya está apretado y no hay lugar para que
-   camine sin pisar el resto del contenido. */
-.hero__walker{
-  position:absolute;left:0;bottom:6%;z-index:2;
-  width:150px;pointer-events:none;
-  opacity:0;
-  transform:translateX(-260px);
-}
-.hero__walker.is-walking{
-  opacity:1;
-  animation:walkAcross 2.5s cubic-bezier(.4,.05,.4,1) forwards;
-}
-.hero__walker.is-arrived{opacity:1;transform:translateX(calc(46% - 4px))}
-@keyframes walkAcross{
-  0%{opacity:0;transform:translateX(-260px)}
-  8%{opacity:1}
-  100%{opacity:1;transform:translateX(calc(46% - 4px))}
-}
-
-.walker__svg{display:block;width:100%;height:auto;overflow:visible;
-  filter:drop-shadow(0 10px 16px rgba(8,24,63,.28));
-}
-
-/* piernas: solo se mueven mientras camina */
-.hero__walker.is-walking .walker__leg--back{animation:legBack .46s ease-in-out infinite}
-.hero__walker.is-walking .walker__leg--front{animation:legFront .46s ease-in-out infinite}
-@keyframes legBack{0%,100%{transform:rotate(20deg)}50%{transform:rotate(-20deg)}}
-@keyframes legFront{0%,100%{transform:rotate(-20deg)}50%{transform:rotate(20deg)}}
-
-/* el cuerpo bobea al caminar, y con un rebote más suave una vez que llega */
-.hero__walker.is-walking .walker__body{animation:bodyBob .46s ease-in-out infinite}
-.hero__walker.is-arrived .walker__body{animation:idleBounce 2.6s ease-in-out infinite}
-@keyframes bodyBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes idleBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-
-/* parpadeo continuo, sutil, todo el tiempo */
-.walker__eyes{animation:walkerBlink 4.6s ease-in-out infinite}
-@keyframes walkerBlink{
-  0%,90%,100%{transform:scaleY(1)}
-  93%,96%{transform:scaleY(.12)}
-}
-
-/* brazo que señala: cuelga mientras camina, sube al llegar */
-.walker__arm--point{transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
-.hero__walker.is-arrived .walker__arm--point{transform:rotate(-108deg)}
-
-@media (max-width:900px),(prefers-reduced-motion:reduce){
-  .hero__walker{display:none}
-}
-
 /* manchas de color desenfocadas, mismo mecanismo que .packs-blobs */
 .hero-blobs{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;filter:blur(55px)}
 .hero-blobs i{position:absolute;border-radius:50%;animation:blobRise linear infinite}

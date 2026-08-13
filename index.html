@@ -64,59 +64,6 @@
 <section class="hero">
   <div class="hero-blobs" aria-hidden="true"></div>
 
-  <div class="hero__walker" id="heroWalker" aria-hidden="true">
-    <svg viewBox="0 0 200 230" class="walker__svg">
-      <defs>
-        <radialGradient id="walkerGrad" cx="35%" cy="28%" r="78%">
-          <stop offset="0%" stop-color="#eef1fb"/>
-          <stop offset="55%" stop-color="#B9C4E8"/>
-          <stop offset="100%" stop-color="#8C9CD9"/>
-        </radialGradient>
-      </defs>
-
-      <ellipse cx="100" cy="216" rx="48" ry="8" fill="rgba(20,30,70,.18)"/>
-
-      <!-- pierna trasera -->
-      <g class="walker__leg walker__leg--back" style="transform-origin:96px 152px">
-        <rect x="86" y="150" width="14" height="44" rx="7" fill="#14204A"/>
-        <ellipse cx="91" cy="200" rx="17" ry="10" fill="#fff" stroke="#14204A" stroke-width="3"/>
-      </g>
-
-      <!-- pierna delantera -->
-      <g class="walker__leg walker__leg--front" style="transform-origin:108px 152px">
-        <rect x="100" y="150" width="14" height="44" rx="7" fill="#1D2E6B"/>
-        <ellipse cx="120" cy="200" rx="17" ry="10" fill="#fff" stroke="#14204A" stroke-width="3"/>
-      </g>
-
-      <g class="walker__body">
-        <!-- brazo de atrás, quieto -->
-        <g class="walker__arm walker__arm--back" style="transform-origin:52px 108px">
-          <rect x="42" y="100" width="13" height="42" rx="6.5" fill="#8C9CD9"/>
-          <circle cx="48" cy="146" r="12" fill="#fff" stroke="#14204A" stroke-width="3"/>
-        </g>
-
-        <!-- cabeza / cuerpo burbuja -->
-        <circle cx="100" cy="100" r="68" fill="url(#walkerGrad)" stroke="#fff" stroke-width="5"/>
-        <path d="M38 62 Q100 8 164 58 Q138 42 100 46 Q64 49 38 62Z" fill="#1D2E6B"/>
-        <ellipse cx="138" cy="42" rx="13" ry="7" fill="#fff" opacity=".85"/>
-
-        <g class="walker__eyes" style="transform-box:fill-box;transform-origin:center">
-          <ellipse cx="80" cy="96" rx="9" ry="13" fill="#14204A"/>
-          <ellipse cx="120" cy="96" rx="9" ry="13" fill="#14204A"/>
-          <rect x="76.5" y="87" width="5.5" height="7" rx="2.5" fill="#fff"/>
-          <rect x="116.5" y="87" width="5.5" height="7" rx="2.5" fill="#fff"/>
-        </g>
-        <path d="M79 121 Q100 137 121 121" stroke="#14204A" stroke-width="5" fill="none" stroke-linecap="round"/>
-
-        <!-- brazo que señala -->
-        <g class="walker__arm walker__arm--point" style="transform-origin:148px 108px">
-          <rect x="139" y="94" width="13" height="44" rx="6.5" fill="#B9C4E8"/>
-          <circle cx="145" cy="88" r="13" fill="#fff" stroke="#14204A" stroke-width="3"/>
-          <rect x="139.5" y="64" width="9" height="25" rx="4.5" fill="#fff" stroke="#14204A" stroke-width="3"/>
-        </g>
-      </g>
-    </svg>
-  </div>
 
   <div class="hero__inner">
     <p class="hero__eyebrow reveal">
