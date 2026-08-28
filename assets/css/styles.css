@@ -577,7 +577,10 @@ input[type=range]::-moz-range-thumb{
    no en el relleno. Texto oscuro porque el fondo ahora es claro. */
 .packs{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:1.6rem;align-items:stretch}
 .pack{
-  position:relative;overflow:hidden;isolation:isolate;
+  /* sin overflow:hidden — recortaba el cartel de "más elegido", que sobresale
+     por arriba a propósito. La capa de grano se recorta sola con su propio
+     border-radius, así que el recorte del contenedor no hacía falta. */
+  position:relative;isolation:isolate;
   background:rgba(255,255,255,.38);
   backdrop-filter:blur(14px) saturate(160%);
   -webkit-backdrop-filter:blur(14px) saturate(160%);
