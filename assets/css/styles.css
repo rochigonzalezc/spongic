@@ -333,7 +333,19 @@ table{border-collapse:collapse;width:100%}
    arriba mientras la siguiente sube y se apila debajo. Nada de JS — es
    position:sticky puro, cada item con un offset creciente para que se
    amontonen en vez de superponerse exactas. */
-.stack{position:relative;padding-top:.5rem}
+.stack{
+  position:relative;padding-top:.5rem;
+  /* El escalón entre tarjetas pegadas tiene que ser mayor que la barra del
+     título (71px) o la tarjeta de abajo le come el encabezado a la de arriba.
+     Con 76 quedan las tres escalonadas y con algo de aire entre medio. */
+  --paso:76px;
+}
+/* Recorrido extra al final del stack. Una tarjeta pegada no puede pasar el
+   borde inferior de su contenedor: sin este espacio la tercera llegaba justo
+   cuando ya no entraba y empujaba a las otras dos, deshaciendo el escalonado.
+   Va como elemento y no como padding porque el alcance de position:sticky se
+   mide contra la caja de contenido, que el padding no agranda. */
+.stack__runway{height:clamp(170px,24vh,260px)}
 .stack__item{
   position:sticky;
   margin-bottom:1.6rem;
@@ -342,8 +354,8 @@ table{border-collapse:collapse;width:100%}
   box-shadow:0 10px 26px -14px rgba(29,46,107,.35);
 }
 .stack__item:nth-child(1){top:calc(var(--nav-h) + 14px);z-index:1}
-.stack__item:nth-child(2){top:calc(var(--nav-h) + 14px + 62px);z-index:2}
-.stack__item:nth-child(3){top:calc(var(--nav-h) + 14px + 124px);z-index:3}
+.stack__item:nth-child(2){top:calc(var(--nav-h) + 14px + var(--paso));z-index:2}
+.stack__item:nth-child(3){top:calc(var(--nav-h) + 14px + var(--paso) * 2);z-index:3}
 
 .stack__bar{
   display:flex;align-items:center;justify-content:center;gap:1rem;
