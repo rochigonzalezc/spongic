@@ -113,7 +113,9 @@ table{border-collapse:collapse;width:100%}
 .section--cream + .section--packs{padding-top:clamp(4.5rem,9vw,8rem)}
 .section--packs .packshot figcaption{color:rgba(255,255,255,.55)}
 
-.section__head{margin-bottom:clamp(2.5rem,5vw,4rem);max-width:min(100%,760px)}
+/* 820px y no 760: con 760 "Es la esponja inteligente." se partía en dos
+   líneas por 27px, y ese renglón tiene que entrar entero */
+.section__head{margin-bottom:clamp(2.5rem,5vw,4rem);max-width:min(100%,820px)}
 .section__head--center{max-width:none;text-align:center}
 .section__head--center .lead{margin-inline:auto}
 
@@ -367,8 +369,6 @@ table{border-collapse:collapse;width:100%}
   .stack__body{grid-template-columns:1fr;text-align:center;gap:1rem}
   .stack__body .card__icon{margin-inline:auto}
 }
-
-.hand-arrow{margin-top:1.4rem;display:block}
 
 /* card__icon base: la reutiliza tanto el stack como cualquier otro ícono
    de esponja del sitio, por eso queda con proporción libre acá */
