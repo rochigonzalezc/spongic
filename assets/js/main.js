@@ -432,6 +432,9 @@
 
     $('#cartTotal').textContent = money(t.sum);
 
+    // el pedido viaja en el href del enlace, así el clic navega sin JS de por medio
+    $('#checkoutBtn').href = waLink(checkoutText());
+
     // barra de envío gratis
     if (CFG.envioGratisDesde) {
       ship.hidden = false;
@@ -522,10 +525,7 @@
       if (dec) setQty(dec.dataset.dec, (cart[dec.dataset.dec] || 0) - 1);
     });
 
-    $('#checkoutBtn').addEventListener('click', function () {
-      if (totals().items === 0) return;
-      window.open(waLink(checkoutText()), '_blank', 'noopener');
-    });
+    // el href se rearma en cada cambio del carrito, dentro de renderCart()
   }
 
   /* ------------------------------------------------------- espina térmica

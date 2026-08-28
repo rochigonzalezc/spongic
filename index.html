@@ -422,12 +422,15 @@
       <strong id="cartTotal">$0</strong>
     </div>
     <p class="drawer__note">Envío gratis en CABA y GBA. Al resto del país lo coordinamos por WhatsApp.</p>
-    <button class="btn btn--wa btn--block" id="checkoutBtn">
+    <!-- Enlace y no botón: abrirlo con window.open lo bloquean los
+         bloqueadores de ventanas emergentes y los iframes con sandbox.
+         El href lo arma el JS con el detalle del pedido. -->
+    <a class="btn btn--wa btn--block" id="checkoutBtn" href="#" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
         <path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2m0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23m4.52-6.16c-.25-.12-1.47-.72-1.69-.81s-.4-.12-.56.13-.64.81-.79.98-.29.19-.54.06a6.7 6.7 0 0 1-1.98-1.22 7.5 7.5 0 0 1-1.37-1.71c-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44s.17-.25.25-.42a.46.46 0 0 0-.02-.44c-.06-.12-.56-1.35-.76-1.85s-.4-.42-.56-.43h-.47a.9.9 0 0 0-.66.31 2.77 2.77 0 0 0-.87 2.07 4.83 4.83 0 0 0 1.01 2.56 11 11 0 0 0 4.22 3.73c.59.25 1.05.4 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.68-1.19s.21-1.08.14-1.19-.22-.17-.47-.29"/>
       </svg>
       Confirmar por WhatsApp
-    </button>
+    </a>
   </footer>
 </aside>
 
