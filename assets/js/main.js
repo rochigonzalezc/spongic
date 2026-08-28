@@ -68,8 +68,8 @@
 
     var faqEnvio = $('#faqEnvio');
     if (faqEnvio && CFG.zonaEnvio) {
-      faqEnvio.textContent = 'Sí, hacemos envíos: ' + CFG.zonaEnvio +
-        '. Escribinos por WhatsApp y coordinamos la entrega según tu zona.';
+      // zonaEnvio ya viene como frase entera, así que se antepone el sí y listo
+      faqEnvio.textContent = 'Sí, hacemos envíos. ' + CFG.zonaEnvio;
     }
   }
 

@@ -159,14 +159,19 @@ table{border-collapse:collapse;width:100%}
 }
 .logo--sm{height:36px;width:auto}
 .logo--xs{height:24px;width:auto}
-.logo--hero{width:min(94%,720px);margin-inline:auto}
+/* 90% y no 94%: el contorno blanco sobresale del box de la imagen y en
+   pantallas angostas quedaba pegado al borde */
+.logo--hero{width:min(90%,720px);margin-inline:auto}
 
-/* contorno blanco tipo sticker: sombras encadenadas sin desenfoque, para que
-   el borde quede nítido en lugar de un resplandor difuso */
+/* Contorno blanco tipo sticker: sombras encadenadas sin desenfoque, para que
+   el borde quede nítido en lugar de un resplandor difuso. Se encadenan en las
+   cuatro direcciones y también en diagonal, porque con sólo las cuatro rectas
+   las esquinas del contorno quedan mordidas al engrosarlo. */
 .sticker{
+  --grosor:4px;
   filter:
-    drop-shadow(1.5px 0 0 #fff) drop-shadow(-1.5px 0 0 #fff)
-    drop-shadow(0 1.5px 0 #fff) drop-shadow(0 -1.5px 0 #fff)
+    drop-shadow(var(--grosor) 0 0 #fff) drop-shadow(calc(var(--grosor) * -1) 0 0 #fff)
+    drop-shadow(0 var(--grosor) 0 #fff) drop-shadow(0 calc(var(--grosor) * -1) 0 #fff)
     drop-shadow(0 10px 20px rgba(8,24,63,.4));
 }
 
@@ -304,19 +309,6 @@ table{border-collapse:collapse;width:100%}
 .hero-blobs{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;filter:blur(55px)}
 .hero-blobs i{position:absolute;border-radius:50%;animation:blobRise linear infinite}
 
-/* sello */
-.stamp{
-  position:absolute;top:calc(var(--nav-h) + 1.5rem);right:clamp(1rem,5vw,4rem);
-  width:clamp(94px,9.5vw,134px);z-index:3;
-  filter:drop-shadow(0 0 2px #fff) drop-shadow(0 8px 16px rgba(8,24,63,.4));
-  animation:latido 3.4s ease-in-out infinite;
-}
-.stamp img{width:100%;height:auto}
-/* el texto ya viene en el sello, así que late en lugar de girar */
-@keyframes latido{
-  0%,100%{transform:rotate(-8deg) scale(1)}
-  50%    {transform:rotate(-8deg) scale(1.07)}
-}
 
 /* ---------- Marquee ---------- */
 .marquee{
@@ -815,7 +807,6 @@ input[type=range]::-moz-range-thumb{
   .nav__links{display:none}
   .nav__ig{display:none}
   .cart-btn__label{display:none}
-  .stamp{width:76px;top:auto;bottom:1.5rem;right:1.2rem}
   .hero{min-height:auto;padding-top:calc(var(--nav-h) + 2.5rem)}
   .pack--featured{transform:none}
   .compare__table th,.compare__table td{padding:.85rem .7rem;font-size:.88rem}
