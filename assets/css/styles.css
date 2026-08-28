@@ -786,15 +786,20 @@ input[type=range]::-moz-range-thumb{
 /* ---------- Toast ---------- */
 .toast{
   position:fixed;left:50%;bottom:2rem;z-index:120;
-  transform:translate(-50%,150%);
+  /* Baja su propia altura MÁS la separación al piso, así el borde de arriba
+     queda justo en el borde inferior de la ventana. Con un 150% a secas, el
+     aviso vacío es tan bajo que ese 150% no alcanzaba a sacarlo de pantalla
+     y asomaba un pedazo. La opacidad es el respaldo por si queda un subpíxel. */
+  transform:translate(-50%,calc(100% + 2rem));
+  opacity:0;
   background:var(--blue-900);color:#fff;
   font-family:var(--font-display);letter-spacing:.035em;font-weight:500;font-size:.95rem;
   padding:.9rem 1.5rem;border-radius:var(--r-pill);
   box-shadow:var(--shadow-lg);
-  transition:transform .4s var(--ease);
+  transition:transform .4s var(--ease),opacity .25s var(--ease);
   pointer-events:none;max-width:90vw;text-align:center;
 }
-.toast.is-on{transform:translate(-50%,0)}
+.toast.is-on{transform:translate(-50%,0);opacity:1}
 
 /* ---------- Reveal ---------- */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease) var(--d,0s),transform .7s var(--ease) var(--d,0s)}
