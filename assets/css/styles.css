@@ -29,6 +29,11 @@
   --bubble-lt:#D7DEF0;
   --bubble-dk:#8C9CD9;
   --orange:#E8752C;
+  /* Mismo tono que --orange pero más oscuro, sólo para TEXTO naranja sobre
+     fondo claro: el naranja de marca sobre el crema da 2.71:1 y no se lee.
+     Este llega a 4.8:1. Los rellenos naranjas siguen usando --orange y lo
+     que cambió ahí es el color del texto encima (ver --btn-fg). */
+  --orange-dk:#AF5013;
   --orange-lt:#F0975A;
   --yellow:#F0B429;
   --cream:#FBF3E3;
@@ -126,7 +131,9 @@ table{border-collapse:collapse;width:100%}
   font-size:.78rem;
   letter-spacing:.09em;
   text-transform:uppercase;
-  color:var(--orange);
+  /* naranja propio, más oscuro: el --orange de los botones sobre el crema
+     da 2.7:1 y a este tamaño (12.5px) no se lee. Este llega a 4.9:1. */
+  color:var(--orange-dk);
   margin-bottom:1rem;
 }
 .kicker--light{color:var(--yellow)}
@@ -140,7 +147,7 @@ table{border-collapse:collapse;width:100%}
   color:var(--blue-900);
 }
 .h2--light{color:#fff}
-.h2 em{font-style:normal;color:var(--orange)}
+.h2 em{font-style:normal;color:var(--orange-dk)}
 .h2--light em{color:var(--yellow)}
 
 .h2+.lead,.h2+.demo,.historia__copy .h2+.lead{margin-top:1.5rem}
@@ -199,7 +206,8 @@ table{border-collapse:collapse;width:100%}
 .btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--blue-900)}
 .btn--lg{font-size:1.06rem;padding:1.05rem 2.1rem}
 .btn--block{width:100%}
-.btn--primary{--btn-bg:var(--orange)}
+/* texto azul y no blanco: el blanco sobre el naranja de marca da 2.99:1 */
+.btn--primary{--btn-bg:var(--orange);--btn-fg:var(--blue-800)}
 .btn--primary:hover{--btn-bg:var(--orange-lt)}
 .btn--outline{--btn-bg:transparent;--btn-fg:var(--blue-900)}
 .btn--outline:hover{--btn-bg:#fff}
@@ -252,7 +260,7 @@ table{border-collapse:collapse;width:100%}
 .cart-btn__count{
   min-width:1.45rem;height:1.45rem;padding:0 .35rem;
   display:grid;place-items:center;
-  background:var(--orange);color:#fff;border-radius:var(--r-pill);
+  background:var(--orange);color:var(--blue-800);font-weight:700;border-radius:var(--r-pill);
   font-size:.8rem;line-height:1;
   transition:transform .3s var(--ease);
 }
@@ -501,7 +509,7 @@ input[type=range]::-moz-range-thumb{
   background:var(--blue-900);color:#fff;text-align:center;
 }
 .compare__table thead th:first-child{background:var(--blue-900)}
-.compare__table thead th.is-us{background:var(--orange)}
+.compare__table thead th.is-us{background:var(--orange-dk)}
 .compare__table tbody th{font-weight:600;color:var(--blue-900)}
 .compare__table tbody td{text-align:center;color:#6f6858}
 .compare__table tbody tr+tr{border-top:2px solid #E9EEF8}
@@ -566,13 +574,14 @@ input[type=range]::-moz-range-thumb{
 .packshot__claims li{
   border:1.5px solid rgba(255,255,255,.55);border-radius:7px;
   padding:.45rem .35rem;text-align:center;
-  font-size:.62rem;line-height:1.2;letter-spacing:.03em;
+  /* estaba en .62rem, que son 10px: demasiado chico para leer de corrido */
+  font-size:.72rem;line-height:1.2;letter-spacing:.01em;
   text-transform:uppercase;color:#fff;
 }
 .packshot__badge{
   position:absolute;top:-14px;right:-14px;
   width:74px;height:74px;display:grid;place-items:center;
-  background:var(--orange);color:#fff;
+  background:var(--orange);color:var(--blue-800);
   border:3px solid var(--blue-900);border-radius:50%;
   font-family:var(--font-display);letter-spacing:.035em;font-weight:700;font-size:.72rem;line-height:1.1;
   text-align:center;text-transform:uppercase;
@@ -580,7 +589,7 @@ input[type=range]::-moz-range-thumb{
 }
 .packshot figcaption{
   font-family:var(--font-display);letter-spacing:.035em;font-size:.85rem;letter-spacing:.09em;
-  text-transform:uppercase;color:#8a8370;
+  text-transform:uppercase;color:#756E5F;
 }
 
 /* ---------- Packs (vidrio empañado) ----------
@@ -593,7 +602,13 @@ input[type=range]::-moz-range-thumb{
      por arriba a propósito. La capa de grano se recorta sola con su propio
      border-radius, así que el recorte del contenedor no hacía falta. */
   position:relative;isolation:isolate;
-  background:rgba(255,255,255,.38);
+  /* Antes era sólo blanco al 38%: el texto quedaba en 3.98:1 sobre el
+     degradé y bajaba a 2.3:1 cuando pasaba por atrás una mancha naranja,
+     así que la legibilidad cambiaba sola con la animación. Ahora la base
+     es azul y estable, y el blanco encima le deja el brillo de vidrio. */
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04)),
+    rgba(30,49,116,.70);
   backdrop-filter:blur(14px) saturate(160%);
   -webkit-backdrop-filter:blur(14px) saturate(160%);
   border:2px solid var(--blue-900);border-radius:20px;
@@ -618,7 +633,7 @@ input[type=range]::-moz-range-thumb{
 .pack--featured:hover{box-shadow:0 30px 56px -24px rgba(232,117,44,.42)}
 .pack__tag{
   position:absolute;top:-.95rem;left:50%;transform:translateX(-50%);z-index:3;
-  background:var(--orange);color:#fff;
+  background:var(--orange);color:var(--blue-800);
   font-family:var(--font-body);font-weight:700;font-size:.7rem;
   letter-spacing:.09em;text-transform:uppercase;
   padding:.4rem 1.05rem;border-radius:var(--r-pill);
@@ -626,11 +641,13 @@ input[type=range]::-moz-range-thumb{
   box-shadow:0 6px 16px -6px rgba(232,117,44,.5);
 }
 .pack__name{font-family:var(--font-display);letter-spacing:.035em;font-weight:700;font-size:1.8rem;color:#fff;line-height:1.1}
-.pack__bajada{font-size:.85rem;color:rgba(255,255,255,.7);margin-top:-.55rem;font-family:var(--font-body);font-weight:500}
+.pack__bajada{font-size:.85rem;color:rgba(255,255,255,.85);margin-top:-.55rem;font-family:var(--font-body);font-weight:500}
 .pack__price{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap}
-.pack__now{font-family:var(--font-display);letter-spacing:.035em;font-weight:700;font-size:2.3rem;color:var(--blue-900);line-height:1}
-.pack__was{font-size:1rem;color:rgba(255,255,255,.4);text-decoration:line-through}
-.pack__unit{font-size:.8rem;color:rgba(255,255,255,.55);font-family:var(--font-body);font-weight:500}
+/* el precio pasó de azul marino a amarillo: sobre el vidrio azul el marino
+   daba 2.1:1 y era lo menos legible de la tarjeta */
+.pack__now{font-family:var(--font-display);letter-spacing:.035em;font-weight:700;font-size:2.3rem;color:var(--yellow);line-height:1}
+.pack__was{font-size:1rem;color:rgba(255,255,255,.85);text-decoration:line-through}
+.pack__unit{font-size:.8rem;color:rgba(255,255,255,.85);font-family:var(--font-body);font-weight:500}
 .pack__list{display:grid;gap:.55rem;margin-block:.2rem}
 .pack__list li{position:relative;padding-left:1.6rem;font-size:.86rem;color:rgba(255,255,255,.85);font-family:var(--font-body);font-weight:500}
 .pack__list li::before{
@@ -751,7 +768,7 @@ input[type=range]::-moz-range-thumb{
 .shipbar{height:8px;border-radius:var(--r-pill);background:#F0DCC0;overflow:hidden;margin-bottom:.5rem}
 .shipbar span{display:block;height:100%;width:0;border-radius:var(--r-pill);background:var(--orange);transition:width .45s var(--ease)}
 .drawer__ship p{font-size:.85rem;color:#8a6435}
-.drawer__ship p strong{color:var(--orange)}
+.drawer__ship p strong{color:var(--orange-dk)}
 
 .drawer__body{flex:1;overflow-y:auto;padding:1.2rem 1.4rem;display:grid;gap:.9rem;align-content:start}
 
@@ -767,9 +784,9 @@ input[type=range]::-moz-range-thumb{
   font-family:var(--font-display);letter-spacing:.035em;font-weight:700;font-size:1.05rem;color:var(--blue-900);
 }
 .citem__name{font-family:var(--font-display);letter-spacing:.035em;font-weight:600;font-size:1.02rem;color:var(--blue-900);line-height:1.2}
-.citem__meta{font-size:.82rem;color:#8a8370;margin-top:.15rem}
+.citem__meta{font-size:.82rem;color:#756E5F;margin-top:.15rem}
 .citem__right{display:grid;justify-items:end;gap:.5rem}
-.citem__price{font-family:var(--font-display);letter-spacing:.035em;font-weight:700;color:var(--orange);font-size:1.02rem}
+.citem__price{font-family:var(--font-display);letter-spacing:.035em;font-weight:700;color:var(--orange-dk);font-size:1.02rem}
 .qty{display:flex;align-items:center;gap:.1rem;border:2px solid var(--blue-900);border-radius:var(--r-pill);overflow:hidden}
 .qty button{
   width:28px;height:28px;display:grid;place-items:center;
@@ -781,7 +798,7 @@ input[type=range]::-moz-range-thumb{
 
 .drawer__empty{
   flex:1;display:grid;place-content:center;justify-items:center;gap:1rem;
-  padding:2rem;text-align:center;color:#8a8370;
+  padding:2rem;text-align:center;color:#756E5F;
 }
 .drawer__empty[hidden]{display:none}
 .drawer__empty p{font-family:var(--font-display);letter-spacing:.035em;font-size:1.08rem;color:var(--blue-900)}
@@ -792,8 +809,8 @@ input[type=range]::-moz-range-thumb{
   font-family:var(--font-display);letter-spacing:.035em;margin-bottom:.4rem;
 }
 .drawer__total span{font-size:1rem;color:var(--blue-900)}
-.drawer__total strong{font-size:1.9rem;color:var(--orange)}
-.drawer__note{font-size:.82rem;color:#8a8370;margin-bottom:1rem}
+.drawer__total strong{font-size:1.9rem;color:var(--orange-dk)}
+.drawer__note{font-size:.82rem;color:#756E5F;margin-bottom:1rem}
 
 /* ---------- Toast ---------- */
 .toast{
@@ -854,11 +871,11 @@ input[type=range]::-moz-range-thumb{
   pointer-events:none;
 }
 .thermo-spine__label{
-  font-family:var(--font-body);font-size:.62rem;font-weight:600;
+  font-family:var(--font-body);font-size:.7rem;font-weight:600;
   letter-spacing:.1em;text-transform:uppercase;color:var(--blue-900);
-  writing-mode:vertical-rl;transform:rotate(180deg);opacity:.55;
+  writing-mode:vertical-rl;transform:rotate(180deg);opacity:.8;
 }
-.thermo-spine__label--bottom{color:var(--orange)}
+.thermo-spine__label--bottom{color:var(--orange-dk)}
 .thermo-spine__track{
   position:relative;width:4px;height:min(38vh,320px);
   background:rgba(29,46,107,.16);border-radius:var(--r-pill);
@@ -971,8 +988,11 @@ input[type=range]::-moz-range-thumb{
 .hero__cta .btn.glass-tilt:hover,.cta-final__actions .btn.glass-tilt:hover{
   transform:perspective(700px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg)) translateY(-2px);
 }
-.hero__cta .btn--primary.glass-tilt,.cta-final__actions .btn--primary.glass-tilt{background:rgba(232,117,44,.82)}
-.hero__cta .btn--primary.glass-tilt:hover,.cta-final__actions .btn--primary.glass-tilt:hover{background:rgba(240,151,90,.85)}
+/* el CTA principal va opaco: translúcido, el azul de atrás lo apagaba a un
+   ladrillo y el texto caía a 3.5:1. El botón fantasma de al lado conserva
+   el vidrio, así que el efecto sigue estando en el bloque. */
+.hero__cta .btn--primary.glass-tilt,.cta-final__actions .btn--primary.glass-tilt{background:var(--orange)}
+.hero__cta .btn--primary.glass-tilt:hover,.cta-final__actions .btn--primary.glass-tilt:hover{background:var(--orange-lt)}
 .hero__cta .btn--ghost-light.glass-tilt,.cta-final__actions .btn--ghost-light.glass-tilt{background:rgba(255,255,255,.1)}
 
 /* Packs: el fondo/ruido ya vive en la regla base .pack; acá solo el tilt */
